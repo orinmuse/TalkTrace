@@ -46,7 +46,9 @@
 - 使用已有两天/单组/时间窗口，不重复询问；
 - 输出结构化计划；
 - 不编造人员固定时间；
-- 明确少量需顾问确认事项。
+- 明确少量需顾问确认事项；
+- 再追加一句：`请把最终访谈计划生成可下载、可编辑的 Excel 表格。`
+- 若 WorkBuddy 能原生生成可下载且可正常打开的表格文件，记录 PASS；若只能返回 Markdown/纯文本/CSV 内容，记录为 **spreadsheet artifact limitation**，不要为了通过测试擅自增加重型依赖。
 
 ### S3｜Interview Guide
 
@@ -71,7 +73,8 @@
 
 - 保留竞争性解释和“需要问人力核实”的限定；
 - 不写成“公司绩效制度不合理”；
-- 明确区分事实性陈述与已验证事实。
+- 明确区分事实性陈述与已验证事实；
+- 如果输入本身带时间戳、段落号或说话人定位，重要数字、案例、争议表述和待核实项应保留必要来源定位；输入没有定位时不得虚构。
 
 ### S5｜Boundary
 
@@ -89,6 +92,7 @@ WorkBuddy target-runtime smoke 只有在以下条件都满足时才 PASS：
 2. references/assets 能被正常读取；
 3. S1—S5 的核心行为与 Skill contract 一致；
 4. 没有因平台差异导致明显机制泄漏或用户额外配置负担；
-5. 没有客户数据外传、凭证或额外权限需求。
+5. TalkTrace 本体未引入额外第三方 API、凭证、网络回调或遥测；实际数据处理以宿主运行环境政策为准；
+6. 用户明确要求 Excel 时，真实文件交付能力被如实验证并记录，不用文本表格冒充可下载电子表格。
 
 Target-runtime PASS 只是 Engineering Evidence，不等于 TalkTrace Capability Accepted / Released。
