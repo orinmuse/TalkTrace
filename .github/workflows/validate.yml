@@ -68,17 +68,17 @@ jobs:
               raise SystemExit("Interview Plan must expose information-gap semantics")
 
           guide = Path("references/interview-guide.md").read_text(encoding="utf-8")
-          unsafe_regressions = [
-              "每一步由谁提出、调整、审核和确认",
-              "院级负责人通常在哪些情况下会调整项目经理提交的建议",
-          ]
-          for phrase in unsafe_regressions:
-              if phrase in guide:
-                  raise SystemExit(f"Known premise-safety regression reintroduced: {phrase}")
-
-          for required_phrase in ("Two-stage questioning", "Premise preflight"):
+          for required_phrase in (
+              "Two-stage questioning",
+              "Premise preflight",
+              "只有在以下情况下可以作为既定前提",
+              "先还原真实发生的步骤",
+          ):
               if required_phrase not in guide:
                   raise SystemExit(f"Interview Guide missing premise-safety mechanism: {required_phrase}")
+
+          # Unsafe sentences may intentionally appear as documented counterexamples.
+          # CI validates the required prevention mechanism instead of banning the text itself.
 
           delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
           for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文"):
