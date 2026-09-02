@@ -67,6 +67,14 @@ jobs:
           if "是否存在/是否发生/是否普遍" not in skill:
               raise SystemExit("SKILL.md must propagate semantic premise-safety")
 
+          for required_phrase in (
+              "默认不要机械展示给用户",
+              "顾问可以直接继续使用的轻量工作纪要",
+              "不默认展开完整竞争假设树",
+          ):
+              if required_phrase not in skill:
+                  raise SystemExit(f"SKILL.md missing lightweight UX guard: {required_phrase}")
+
           plan = Path("references/interview-plan.md").read_text(encoding="utf-8")
           if "重点验证/信息缺口" not in plan:
               raise SystemExit("Interview Plan must expose information-gap semantics")
@@ -88,6 +96,18 @@ jobs:
 
           # Unsafe sentences may intentionally appear as documented counterexamples.
           # CI validates the general prevention mechanism instead of a keyword blacklist.
+
+          notes = Path("references/interview-notes.md").read_text(encoding="utf-8")
+          for required_phrase in (
+              "Default user-facing structure",
+              "核心观点",
+              "关键事实与案例",
+              "待核实事项",
+              "对后续访谈的影响",
+              "不应把纪要写成证据审计报告",
+          ):
+              if required_phrase not in notes:
+                  raise SystemExit(f"Interview Notes missing lightweight UX behavior: {required_phrase}")
 
           premise = Path("evals/premise-safety.md").read_text(encoding="utf-8")
           for required_phrase in (
@@ -116,5 +136,11 @@ jobs:
           smoke = Path("workbuddy/SMOKE.md").read_text(encoding="utf-8")
           if "S6｜Sequential Interview Delta / Refresh" not in smoke:
               raise SystemExit("WorkBuddy smoke must include sequential-context validation")
+          for required_phrase in (
+              "轻量纪要",
+              "不默认展开完整竞争假设树",
+          ):
+              if required_phrase not in smoke:
+                  raise SystemExit(f"WorkBuddy smoke missing lightweight UX check: {required_phrase}")
 
           print("TalkTrace context-driven Skill structure: PASS")
