@@ -21,11 +21,15 @@ jobs:
               Path("references/interview-plan.md"),
               Path("references/interview-guide.md"),
               Path("references/interview-notes.md"),
+              Path("references/interview-delta.md"),
               Path("assets/interview-plan-template.csv"),
               Path("assets/interview-guide-client.md"),
               Path("assets/interview-guide-internal.md"),
               Path("assets/interview-notes-template.md"),
+              Path("evals/README.md"),
               Path("evals/cases.md"),
+              Path("evals/sequential-context.md"),
+              Path("workbuddy/SMOKE.md"),
           ]
 
           missing = [str(p) for p in required if not p.is_file()]
@@ -50,9 +54,44 @@ jobs:
               "references/interview-plan.md",
               "references/interview-guide.md",
               "references/interview-notes.md",
+              "references/interview-delta.md",
           ]
           for ref in refs:
               if ref not in skill:
                   raise SystemExit(f"SKILL.md does not route to {ref}")
 
-          print("TalkTrace Skill structure: PASS")
+          if "当前 AI 工作上下文" not in skill and "当前上下文" not in skill:
+              raise SystemExit("SKILL.md must define current context as the working memory")
+
+          plan = Path("references/interview-plan.md").read_text(encoding="utf-8")
+          if "重点验证/信息缺口" not in plan:
+              raise SystemExit("Interview Plan must expose information-gap semantics")
+
+          guide = Path("references/interview-guide.md").read_text(encoding="utf-8")
+          unsafe_regressions = [
+              "每一步由谁提出、调整、审核和确认",
+              "院级负责人通常在哪些情况下会调整项目经理提交的建议",
+          ]
+          for phrase in unsafe_regressions:
+              if phrase in guide:
+                  raise SystemExit(f"Known premise-safety regression reintroduced: {phrase}")
+
+          for required_phrase in ("Two-stage questioning", "Premise preflight"):
+              if required_phrase not in guide:
+                  raise SystemExit(f"Interview Guide missing premise-safety mechanism: {required_phrase}")
+
+          delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
+          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文"):
+              if required_phrase not in delta:
+                  raise SystemExit(f"Interview Delta missing required behavior: {required_phrase}")
+
+          sequential = Path("evals/sequential-context.md").read_text(encoding="utf-8")
+          for required_phrase in ("Stage 3｜Interview Delta", "Stage 4｜Refresh the next interview", "单一来源", "不预设吴川拍板"):
+              if required_phrase not in sequential:
+                  raise SystemExit(f"Sequential regression case missing assertion: {required_phrase}")
+
+          smoke = Path("workbuddy/SMOKE.md").read_text(encoding="utf-8")
+          if "S6｜Sequential Interview Delta / Refresh" not in smoke:
+              raise SystemExit("WorkBuddy smoke must include sequential-context validation")
+
+          print("TalkTrace context-driven Skill structure: PASS")
