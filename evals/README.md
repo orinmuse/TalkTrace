@@ -34,13 +34,27 @@ TalkTrace 的公开仓库测试分为两类：
 
 这是公开工程 regression case，不是最终 sealed acceptance case。
 
+### `premise-safety.md`
+
+针对 Work-mode behavioral verification 在 frozen HEAD `8c9ba8caaeeff4a418c65e69fd33d3d58f69091b` 暴露的弱语义前提问题，验证：
+
+- existence presupposition；
+- continuation / follow-up presupposition；
+- single-case → recurring mechanism generalization；
+- actor / authority presupposition；
+- sequence / mechanism invention；
+- causal presupposition；
+- 条件句中仍然隐藏的未确认前提。
+
+目的不是维护关键词黑名单，而是验证一般的 semantic premise preflight。
+
 ## Final Capability Acceptance
 
 新版候选冻结后，由 Skill Manager 另行预注册未暴露的 sealed held-out cases，并至少覆盖：
 
 - 信息缺口驱动的 Interview Plan；
 - senior / functional / business role differentiation；
-- premise-neutrality；
+- premise-neutrality，包括弱语义前提与 case-to-mechanism 泛化；
 - source / uncertainty discipline；
 - insufficient-input degradation；
 - diagnosis boundary；
