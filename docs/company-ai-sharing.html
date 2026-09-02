@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI × 管理咨询｜TalkTrace v0.1 公司内部分享</title>
+<style>
+:root{--bg:#f5f7f5;--paper:#fff;--ink:#18201c;--text:#343a36;--muted:#737a74;--line:#dbe2dd;--deep:#183a2d;--deep2:#214a3a;--deep3:#2d5947;--soft:#edf4f0;--warm:#d39a66;--bad:#a84c42;--badsoft:#f9ecea;--sidebar:245px;--stage:1600px;--content:1240px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:18px;line-height:1.8;-webkit-font-smoothing:antialiased}a{color:inherit}#progress{position:fixed;left:0;top:0;height:3px;background:#2f7357;width:0;z-index:100}.hero{min-height:74vh;display:flex;align-items:center;padding:56px}.hero-inner{width:min(1450px,calc(100vw - 112px));margin:auto;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.55fr);gap:54px;align-items:end}.eyebrow{font-size:13px;font-weight:850;letter-spacing:.11em;color:#2f7357}.hero h1{margin:16px 0 20px;font-size:clamp(56px,4.8vw,80px);line-height:1.05;letter-spacing:-.04em}.hero p{max-width:950px;margin:0;color:#424944;font-size:21px;line-height:1.68}.hero-note{grid-column:2;grid-row:1;padding:20px 0 4px 26px;border-left:1px solid var(--line);color:var(--muted);font-size:14px}.shell{width:min(var(--stage),calc(100% - 48px));margin:auto;display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);gap:44px;align-items:start}.sidebar{position:sticky;top:22px;height:calc(100vh - 44px);padding:48px 0;overflow:auto}.toc-title{margin:0 12px 14px;color:var(--muted);font-size:12px;font-weight:850;letter-spacing:.1em}.toc{display:flex;flex-direction:column;gap:3px}.toc-link{display:grid;grid-template-columns:30px 1fr;gap:7px;padding:10px 11px;border-left:3px solid transparent;border-radius:7px;text-decoration:none;color:#727973;font-size:13px;line-height:1.35}.toc-link span{color:#a3aaa5;font-weight:800}.toc-link.active{background:#fff;border-left-color:#2f7357;color:var(--ink);box-shadow:0 6px 20px rgba(20,30,24,.05)}main{min-width:0}.article{width:min(var(--content),100%);padding:54px 0 120px}.chapter{margin-bottom:94px;scroll-margin-top:24px;padding-right:18px}.chapter>h2{width:min(1080px,90%);margin:0 0 38px;padding:22px 28px;display:grid;grid-template-columns:68px minmax(0,1fr);gap:14px;align-items:center;border-radius:8px;background:linear-gradient(90deg,var(--deep),var(--deep2));color:#f5f8f6;font-size:38px;line-height:1.24}.chapter>h2 .num{font-size:14px;color:#aac7b8;font-weight:850;letter-spacing:.05em}.chapter>h2 strong{color:#f5f8f6}.chapter h3{margin:46px 0 18px;padding:12px 16px;display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:center;border-radius:6px;background:var(--deep3);color:#f5f8f6;font-size:22px;line-height:1.42}.chapter h3 .subnum{font-size:12px;color:var(--warm);font-weight:850}.chapter h3 strong{color:#f5f8f6}p{margin:0 0 1.25em;color:var(--text)}.key{font-weight:800;color:#151b17}.keybox{margin:26px 0;padding:20px 22px;border-left:4px solid #2f7357;border-radius:8px;background:linear-gradient(90deg,#eaf3ee,#f8faf9)}blockquote{margin:22px 0;padding:14px 20px;border-left:3px solid #2f7357;background:#fbfcfb;font-size:19px;color:#29322d}.flow{width:100%;margin:22px 0 30px;padding:18px;border:1px solid var(--line);border-radius:10px;background:#fff}.flow-key{display:block;margin-bottom:13px;font-weight:820}.flow-items{display:flex;align-items:center;gap:7px}.flow-node{flex:1 1 0;min-width:0;min-height:56px;padding:9px 10px;display:grid;place-items:center;border:1px solid #dfeae4;border-radius:7px;background:var(--soft);color:#204b3b;text-align:center;font-size:14px;font-weight:750;line-height:1.35}.flow-arrow{flex:0 0 auto;color:#b5794c;font-weight:850}.work-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0 30px}.work-card{min-height:128px;padding:17px;border:1px solid #dde5e0;border-radius:8px;background:#fbfcfb}.work-card strong{display:block;margin-bottom:9px;color:var(--deep);font-size:16px}.work-card span{display:block;color:#444a46;font-size:14.5px;line-height:1.7}.prompt-definition{margin:18px 0 24px;padding:18px 22px;border-left:4px solid var(--deep);border-radius:0 8px 8px 0;background:#f1f5f2;font-size:20px}.prompt-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0}.prompt-card{overflow:hidden;border:1px solid #d9e1dc;border-radius:10px;background:#fff}.prompt-card.simple{border-top:5px solid #96735d}.prompt-card.context{border-top:5px solid var(--deep)}.prompt-head{padding:16px 19px 13px;border-bottom:1px solid #e5e9e6;background:#f8faf8}.prompt-head small{display:block;margin-bottom:3px;color:#7a817c;font-size:12px;font-weight:850;letter-spacing:.06em}.prompt-head strong{font-size:20px}.prompt-block{padding:17px 19px}.prompt-block+.prompt-block{border-top:1px solid #ecefec}.prompt-label{display:block;margin-bottom:8px;color:#5c645e;font-size:12px;font-weight:850;letter-spacing:.04em}.prompt-input{font-size:16px;line-height:1.65}.context-points{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}.context-point{padding:9px 10px;border-radius:6px;background:#f1f5f2;color:#354039;font-size:14px;line-height:1.5}.prompt-output{margin:0;padding-left:1.25em}.prompt-output li{margin:.35em 0;font-size:14.5px;line-height:1.58;color:#343a36}.prompt-result{margin:0;padding:13px 19px 17px;font-size:14.5px;font-weight:760}.simple .prompt-result{background:#fbf7f4;color:#765641}.context .prompt-result{background:#f0f6f2;color:#244b3b}.prompt-conclusion{margin:22px 0;padding:20px 22px;border-radius:8px;background:linear-gradient(90deg,#e8f2ec,#f7f9f8);font-size:18px}.skill-anatomy{display:grid;grid-template-columns:minmax(280px,.75fr) minmax(0,1.25fr);gap:18px;margin:24px 0}.skill-tree{margin:0;padding:20px;border-radius:9px;background:#17251e;color:#e9f2ed;font:14px/1.72 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}.skill-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.skill-card{padding:16px;border:1px solid #dde5e0;border-radius:8px;background:#fff}.skill-card strong{display:block;margin-bottom:6px;color:var(--deep);font-size:15px}.skill-card span{font-size:14px;color:#4b514d;line-height:1.6}.compare-label{margin:24px 0 7px}.compare-box{margin:0 0 16px;padding:18px 20px;border-left:4px solid}.bad-box{background:var(--badsoft);border-color:var(--bad)}.good-box{background:#eef6f2;border-color:#2f7357}.follow-box{background:#faf1e9;border-color:#b98235}.timeline-step{position:relative;margin:0 0 10px 20px;padding:0 0 18px 72px;border-left:2px solid #d9e3dd}.timeline-step:last-child{border-left-color:transparent}.timeline-step h3{margin-top:0}.timeline-step:before{content:attr(data-step);position:absolute;left:-28px;top:4px;width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:var(--deep);color:#fff;font-size:12px;font-weight:850;box-shadow:0 0 0 6px var(--bg)}.chapter ul{margin:14px 0 24px;padding-left:1.35em}.chapter li{margin:.45em 0;color:var(--text)}.future-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}.future-card{padding:20px;border-radius:9px;border:1px solid var(--line);background:#fff}.future-card strong{display:block;margin-bottom:7px;color:var(--deep);font-size:19px}.mobile-nav{display:none}.to-top{position:fixed;right:22px;bottom:22px;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:#fff;text-decoration:none;opacity:0;pointer-events:none;box-shadow:0 8px 26px rgba(20,30,24,.08)}.to-top.show{opacity:1;pointer-events:auto}footer{padding:52px 20px 66px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}@media(max-width:1100px){.hero-inner{grid-template-columns:1fr;gap:28px}.hero-note{grid-column:1;grid-row:auto;border-left:0;border-top:1px solid var(--line);padding:16px 0 0}.shell{grid-template-columns:1fr;width:min(930px,calc(100% - 32px))}.sidebar{display:none}.mobile-nav{position:sticky;top:3px;z-index:40;display:flex;padding:9px 0;background:rgba(245,247,245,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}.mobile-nav select{width:100%;border:0;background:transparent;font:inherit;font-size:13px}.article{width:100%;padding-top:22px}.chapter>h2{width:100%}.flow-items{flex-wrap:wrap}.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.prompt-compare,.skill-anatomy{grid-template-columns:1fr}.future-pair{grid-template-columns:1fr}}@media(max-width:680px){body{font-size:16px}.hero{padding:52px 20px;min-height:auto}.hero-inner{width:100%}.hero h1{font-size:37px}.hero p{font-size:16.5px}.chapter{padding-right:0;margin-bottom:72px}.chapter>h2{grid-template-columns:38px 1fr;padding:18px 16px;font-size:25px}.chapter h3{grid-template-columns:40px 1fr;font-size:19px}.work-grid{grid-template-columns:1fr}.context-points,.skill-card-grid{grid-template-columns:1fr}.timeline-step{margin-left:0;padding-left:42px}.timeline-step:before{left:-18px;width:36px;height:36px;font-size:10px}.flow-items{display:grid;grid-template-columns:1fr}.flow-arrow{transform:rotate(90deg);justify-self:center}}@media print{#progress,.sidebar,.mobile-nav,.to-top{display:none!important}body{background:#fff}.shell{display:block;width:auto}.article{width:auto;padding:0}.hero{min-height:0;padding:24pt 0 32pt}.chapter>h2{width:100%}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">AI × 管理咨询 · 公司内部分享</div>
+      <h1>从“AI 帮我做”，到把咨询方法沉淀成可以重复使用的能力</h1>
+      <p>以调研访谈场景和 TalkTrace v0.1 为例，说明 AI 如何从临时助手进入真实咨询工作流，以及一套顾问方法如何被保存、调用、复用和持续优化。</p>
+    </div>
+    <div class="hero-note">重点不是展示一个复杂系统，而是回答三个问题：AI 能替顾问完成哪些重复工作？Skill 到底是什么？为什么下一场访谈可以比上一场更聪明？</div>
+  </div>
+</header>
+<div class="shell">
+<aside class="sidebar"><div class="toc-title">CONTENTS</div><nav class="toc">
+<a class="toc-link" data-target="s1" href="#s1"><span>01</span><b>AI 使用方式演进</b></a>
+<a class="toc-link" data-target="s2" href="#s2"><span>02</span><b>为什么做 TalkTrace</b></a>
+<a class="toc-link" data-target="s3" href="#s3"><span>03</span><b>TalkTrace 八项功能</b></a>
+<a class="toc-link" data-target="s4" href="#s4"><span>04</span><b>TalkTrace 的边界</b></a>
+<a class="toc-link" data-target="s5" href="#s5"><span>05</span><b>访谈后的新问题</b></a>
+<a class="toc-link" data-target="s6" href="#s6"><span>06</span><b>横向归集 / 纵向追溯</b></a>
+<a class="toc-link" data-target="s7" href="#s7"><span>07</span><b>我的工作方式变化</b></a>
+<a class="toc-link" data-target="s8" href="#s8"><span>08</span><b>三个结论</b></a>
+</nav></aside>
+<main><div class="mobile-nav"><select id="mobileToc"><option value="s1">01 AI 使用方式演进</option><option value="s2">02 为什么做 TalkTrace</option><option value="s3">03 TalkTrace 八项功能</option><option value="s4">04 TalkTrace 的边界</option><option value="s5">05 访谈后的新问题</option><option value="s6">06 横向归集 / 纵向追溯</option><option value="s7">07 我的工作方式变化</option><option value="s8">08 三个结论</option></select></div>
+<article class="article">
+<section class="chapter" id="s1">
+<h2><span class="num">01</span><strong>让 AI 真正帮上忙，我的使用方式经历了几个阶段</strong></h2>
+<h3><span class="subnum">1.1</span><strong>第一阶段：传统咨询模式，大量工作都靠自己“手搓”</strong></h3>
+<p><strong class="key">刚开始：</strong>传统咨询项目中，很多工作高度依赖顾问个人经验和手工处理。以调研诊断为例，一整条工作链都需要项目组自己连续完成。</p>
+<div class="work-grid">
+  <div class="work-card"><strong>01 资料理解</strong><span>阅读客户背景资料<br>理解组织架构、领导分工和部门职责</span></div>
+  <div class="work-card"><strong>02 访谈准备</strong><span>判断访谈对象<br>制定访谈计划<br>编制差异化访谈提纲</span></div>
+  <div class="work-card"><strong>03 访谈执行</strong><span>开展访谈<br>整理录音、现场记录和访谈纪要</span></div>
+  <div class="work-card"><strong>04 信息形成</strong><span>提取有效信息<br>比较不同人员说法<br>形成问题判断</span></div>
+</div>
+<p><strong class="key">为什么不能直接复制：</strong>这些工作每个项目都要做，但企业不同、项目任务不同、受访者不同，又不能简单把上一项目结果复制过来。</p>
+<p class="keybox"><strong class="key">时间主要花在哪里：</strong>大量精力实际上消耗在找信息、搬信息、记信息、重新组织信息，以及反复完成已经形成稳定方法的基础工作。</p>
+<h3><span class="subnum">1.2</span><strong>第二阶段：开始使用大模型，效率提高了，但工作方式没有完全改变</strong></h3>
+<p><strong class="key">工作方式：</strong>开始使用 ChatGPT、Claude 等对话式大模型以后，我的工作链变成：</p>
+<div class="flow"><strong class="flow-key">工作链路</strong><div class="flow-items"><span class="flow-node">资料</span><span class="flow-arrow">→</span><span class="flow-node">提问</span><span class="flow-arrow">→</span><span class="flow-node">AI 回答</span><span class="flow-arrow">→</span><span class="flow-node">人工判断和修改</span><span class="flow-arrow">→</span><span class="flow-node">放进项目成果</span></div></div>
+<p><strong class="key">效率提升：</strong>以前一份访谈提纲可能需要自己写半个小时，现在几分钟就能得到一版初稿。</p>
+<p><strong class="key">但问题还在：</strong>每做一个任务，我仍然要重新告诉 AI 这是什么项目、背景是什么、要解决什么问题、哪些内容不能乱猜、结果应该长什么样。</p>
+<p><strong class="key">这个阶段的 AI：</strong>更像一个能力很强的临时助手——能干很多活，但每次开始之前还要重新交代。</p>
+<h3><span class="subnum">1.3</span><strong>Prompt 是什么：同一个模型，为什么会得到完全不同的结果</strong></h3>
+<div class="prompt-definition"><strong>Prompt（提示词）不是一句“厉害的指令”，而是你把任务、背景、方法、限制条件和输出要求交代给 AI 的方式。</strong></div>
+<p><strong class="key">先看一个直观对比：</strong>下面两边使用同一个模型，都是让 AI 给总经理准备访谈提纲，区别只在于是否把真正影响任务的信息讲清楚。</p>
+<div class="prompt-compare">
+  <div class="prompt-card simple">
+    <div class="prompt-head"><small>方式 A｜只说任务</small><strong>简单提问</strong></div>
+    <div class="prompt-block"><span class="prompt-label">给 AI 的输入</span><p class="prompt-input">“帮我给一家设计院的总经理准备一份访谈提纲。”</p></div>
+    <div class="prompt-block"><span class="prompt-label">AI 很可能生成</span><ol class="prompt-output"><li>请介绍一下公司目前的发展情况。</li><li>您认为公司当前面临的主要问题是什么？</li><li>您如何评价公司的组织管理模式？</li><li>您认为公司未来应该重点发展哪些业务？</li><li>您对人才队伍建设有什么建议？</li></ol></div>
+    <p class="prompt-result">结果：能用，但比较泛。换一家公司的总经理，大部分问题仍然成立。</p>
+  </div>
+  <div class="prompt-card context">
+    <div class="prompt-head"><small>方式 B｜把任务背景讲清楚</small><strong>结构化提供上下文</strong></div>
+    <div class="prompt-block"><span class="prompt-label">给 AI 的输入</span><div class="context-points"><div class="context-point"><strong>项目：</strong>某工程设计院“项目经营与绩效协同”专项调研</div><div class="context-point"><strong>已知：</strong>月报已有合同、产值、回款和重点项目进度</div><div class="context-point"><strong>未知：</strong>项目过程信息怎样进入部门绩效，目标实际怎样分解调整</div><div class="context-point"><strong>角色：</strong>总经理负责年度经营目标、经营管理和重点项目统筹</div><div class="context-point"><strong>任务：</strong>重点了解目标形成逻辑、权责边界和经营—绩效协同中的核心矛盾</div><div class="context-point"><strong>要求：</strong>只问这个角色真正有价值的信息，避免通用问题</div></div></div>
+    <div class="prompt-block"><span class="prompt-label">AI 可以进一步生成</span><ol class="prompt-output"><li>今年年度经营目标从提出到最终确定，实际经历了哪些主要环节？</li><li>目标分解到业务部门和重点项目时，公司层面主要依据哪些因素？</li><li>当项目进度、产值和回款表现不一致时，公司层面通常依据哪些信息判断项目经营状态？</li><li>目前项目经营结果与部门绩效之间，您认为最需要进一步厘清的关系是什么？</li><li>公司、业务部门和项目负责人在经营目标与绩效责任上应分别承担什么责任？</li></ol></div>
+    <p class="prompt-result">结果：问题开始围绕“这个项目真正缺什么信息”展开，而不是生成一套通用总经理提纲。</p>
+  </div>
+</div>
+<div class="prompt-conclusion"><strong>真正拉开差距的，不是右边的 Prompt 更长，而是它把“这个项目是什么、已经知道什么、还缺什么、为什么要问这个人”交代清楚了。</strong></div>
+<p><strong class="key">Prompt 真正解决的问题：</strong>把原来只存在于顾问脑子里的任务背景和工作方法，转成 AI 能理解和执行的信息。</p>
+<p><strong class="key">接下来的问题：</strong>如果这些方法每个项目都会反复出现，为什么每次还要重新告诉 AI？这就自然进入下一步：把稳定的方法沉淀成 Skill。</p>
+<h3><span class="subnum">1.4</span><strong>第三阶段：把反复使用的方法沉淀下来，做成 Skill</strong></h3>
+<p><strong class="key">为什么开始做 Skill：</strong>如果一套方法已经反复验证过，就可以把它保存下来，让下一个项目直接调用。</p>
+<blockquote><strong>如果说 Prompt 是“这一次怎么给 AI 交代任务”，Skill 更像“提前给 AI 写好的一套长期作业指导书”。</strong></blockquote>
+<p><strong class="key">Skill 解决什么：</strong>把比较稳定的方法提前保存，让 AI 遇到相应任务时直接按照这套方法工作，而不是每次重新设计提示词。</p>
+<p><strong class="key">Skill 可以多简单：</strong>最简单的 Skill 甚至只有一个 <code>SKILL.md</code>；方法复杂后，再拆出专业分册、模板和测试案例。</p>
+<h3><span class="subnum">1.5</span><strong>拆开 TalkTrace 看，一个 Skill 实际长什么样</strong></h3>
+<p><strong class="key">TalkTrace 实际长什么样：</strong>它本质上就是一个由若干文件组成的目录。最核心的是总说明书，方法较长时再拆成专业分册、模板和测试案例。</p>
+<div class="skill-anatomy"><pre class="skill-tree">TalkTrace/
+├── SKILL.md
+├── references/
+│   ├── interview-plan.md
+│   ├── interview-guide.md
+│   ├── interview-notes.md
+│   └── interview-delta.md
+├── assets/
+│   ├── 访谈计划模板
+│   ├── 客户发送版提纲模板
+│   ├── 顾问内部版提纲模板
+│   └── 访谈纪要模板
+├── evals/
+│   └── 测试案例
+└── README.md</pre><div class="skill-card-grid"><div class="skill-card"><strong>SKILL.md</strong><span>总作业指导书：告诉 AI 这个 Skill 做什么、什么时候用、边界在哪里。</span></div><div class="skill-card"><strong>references/</strong><span>专业方法分册：分别定义访谈计划、提纲、纪要和递进更新怎么做。</span></div><div class="skill-card"><strong>assets/</strong><span>重复使用的正式模板：包括 Excel 计划、客户发送版 Word、内部版和纪要模板。</span></div><div class="skill-card"><strong>evals/</strong><span>考试题：检查每次修改以后到底变好还是变差，而不是只看输出是否更复杂。</span></div></div></div>
+<p><strong class="key">Skill 和项目资料的区别：</strong>Skill 保存的是<strong>“怎么做”</strong>，项目资料提供的是<strong>“这一次面对什么情况”</strong>。客户资料不会被写进 TalkTrace 本体。</p>
+<div class="flow"><strong class="flow-key">实际运行关系</strong><div class="flow-items"><span class="flow-node">GitHub 中的正式 Skill</span><span class="flow-arrow">→</span><span class="flow-node">安装 / 导入工作环境</span><span class="flow-arrow">→</span><span class="flow-node">模型读取 Skill</span><span class="flow-arrow">→</span><span class="flow-node">叠加当前项目资料</span><span class="flow-arrow">→</span><span class="flow-node">完成实际咨询任务</span></div></div>
+<h3><span class="subnum">1.6</span><strong>Skill 要长期复用，还需要一个地方管理：GitHub</strong></h3>
+<p><strong class="key">Skill 多了以后：</strong>会出现版本、修改记录、测试状态、同事到底应该拿哪一版等问题。</p>
+<p><strong class="key">GitHub 在这里做什么：</strong>对我而言，GitHub 不只是程序员放代码的地方，而是管理 AI 能力资产的正式位置。</p>
+<p><strong class="key">GitHub 里保存什么：</strong>Skill 本体、使用说明、专业规则、模板、测试案例和版本变化都可以在这里长期管理。</p>
+<p class="keybox"><strong class="key">最终工作方式：</strong>我的工作方式开始从“打开 ChatGPT 问问题”，变成<strong>模型 + Skill + 项目资料 + 工作环境</strong>一起完成工作。</p>
+</section>
+<section class="chapter" id="s2">
+<h2><span class="num">02</span><strong>用一个真实的小场景说明：为什么先做 TalkTrace</strong></h2>
+<p><strong class="key">进入 TalkTrace：</strong>调研访谈几乎每个咨询项目都会做，重复频率高、方法相对稳定、客户资料又集中在项目前期，是最适合先切入的小场景之一。</p>
+<h3><span class="subnum">2.1</span><strong>为什么不从“自动做完整诊断”开始</strong></h3>
+<p><strong class="key">为什么不从大系统开始：</strong>完整管理诊断涉及大量专业判断，边界太大。相比之下，访谈阶段的问题足够真实、工作方式稳定，又能清楚判断结果好不好。</p>
+<p class="keybox"><strong class="key">为什么这个场景合适：</strong>高频、重复、方法稳定、主要依赖客户内部资料，而且输出清晰，非常适合先做成轻量 Skill。</p>
+<h3><span class="subnum">2.2</span><strong>传统访谈准备，麻烦的不只是“写几份提纲”</strong></h3>
+<div class="flow"><strong class="flow-key">原来的访谈工作链</strong><div class="flow-items"><span class="flow-node">客户资料</span><span class="flow-arrow">→</span><span class="flow-node">理解项目</span><span class="flow-arrow">→</span><span class="flow-node">识别对象</span><span class="flow-arrow">→</span><span class="flow-node">排计划</span><span class="flow-arrow">→</span><span class="flow-node">写提纲</span><span class="flow-arrow">→</span><span class="flow-node">访谈</span><span class="flow-arrow">→</span><span class="flow-node">整理信息</span></div></div>
+<p><strong class="key">资料为什么难用：</strong>组织架构在 PPT、领导分工在 Word、制度在另一个文件、经营数据在 Excel。真正困难的不是打开文件，而是把零散材料拼成对企业和项目的整体理解。</p>
+<p><strong class="key">访谈会不断改变认知：</strong>第一场可能补充新信息，第二场可能发现与制度不一致，第三场又可能进一步验证其中一部分。</p>
+<p><strong class="key">一次性提纲的问题：</strong>理论上，后面的访谈重点应该不断调整，而不是项目开始时把二三十个人的提纲一次写完后照着问。</p>
+<p><strong class="key">信息都压在项目经理脑子里：</strong>哪些问题已经确认、哪些说法有冲突、下一位领导要追问什么，很多都依赖项目经理自己记住。</p>
+<blockquote><strong>TalkTrace 要解决的不是“帮我写几份提纲”，而是让 AI 陪着项目把整个访谈阶段做完。</strong></blockquote>
+<h3><span class="subnum">2.3</span><strong>TalkTrace 是什么</strong></h3>
+<p><strong class="key">为什么叫 TalkTrace：</strong>Talk 是访谈和对话，Trace 是持续跟踪和追溯访谈过程中不断变化的信息。</p>
+<p><strong class="key">Trace 跟踪什么：</strong>已经知道什么、这次新知道什么、哪些问题已经回答、哪些说法有冲突、哪些还要验证、下一场应该问什么。</p>
+<p><strong class="key">TalkTrace 做到哪里：</strong>当前只负责调研访谈生命周期，从客户资料进入一直到访谈阶段结束；正式企业级诊断不回塞到 TalkTrace。</p>
+<h3><span class="subnum">2.4</span><strong>TalkTrace 怎么使用</strong></h3>
+<p><strong class="key">使用方式：</strong>把当前项目资料或访谈记录提供给 AI，然后直接告诉 TalkTrace 下一步想做什么。用户不需要理解内部规则、状态标签或工程结构。</p>
+<p><strong class="key">变成 Skill 以后：</strong>一套原本只存在于个人聊天记录中的方法，可以被保存、修改、测试、分享和重复使用。</p>
+</section>
+<section class="chapter" id="s3">
+<h2><span class="num">03</span><strong>TalkTrace 现在可以自动完成哪些访谈工作</strong></h2>
+<p><strong class="key">TalkTrace 的八项功能：</strong>从项目资料进入开始，把访谈阶段中一系列高频、重复但又需要专业判断的工作串起来。</p>
+<div class="flow"><strong class="flow-key">八项核心功能</strong><div class="flow-items"><span class="flow-node">资料整理</span><span class="flow-arrow">→</span><span class="flow-node">项目认知</span><span class="flow-arrow">→</span><span class="flow-node">对象识别</span><span class="flow-arrow">→</span><span class="flow-node">访谈计划</span><span class="flow-arrow">→</span><span class="flow-node">提纲生成</span><span class="flow-arrow">→</span><span class="flow-node">中性提问</span><span class="flow-arrow">→</span><span class="flow-node">纪要整理</span><span class="flow-arrow">→</span><span class="flow-node">后续刷新</span></div></div>
+<div class="timeline-step" data-step="01"><h3><span class="subnum">3.1</span><strong>自动读取并整理客户现有资料，形成项目工作底稿</strong></h3><p><strong class="key">客户会提供什么：</strong>组织架构、领导分工、部门职责、制度、财务报表、经营数据、历史材料等 Word、PPT、Excel、PDF 文件。</p><p><strong class="key">AI 先做什么：</strong>直接读取现有资料，提取与项目相关的信息，形成后续访谈可以持续使用的结构化项目工作底稿。</p><p><strong class="key">需要时自动文本化：</strong>适合文本化处理的内容可以自动整理成 Markdown 工作文本，方便后续分析、检索和引用；顾问不需要先手工转格式。</p><p class="keybox"><strong class="key">顾问少做什么：</strong>少花时间在逐份搬运、改格式和重新整理资料上，更快进入“这个项目到底要解决什么”的判断。</p></div>
+<div class="timeline-step" data-step="02"><h3><span class="subnum">3.2</span><strong>自动建立项目初步认知，识别已知信息和关键未知</strong></h3><p><strong class="key">AI 先弄清什么：</strong>企业主要做什么、组织怎么运转、项目要解决什么、各部门承担什么职责、哪些资料已经说明、哪些还需要通过访谈确认。</p><p><strong class="key">AI 内部怎么区分：</strong>已有材料支持、当前工作理解和仍需验证的信息在内部保持区分，避免把推测直接当成事实；用户不需要维护一套额外标签。</p><p><strong class="key">提纲为什么更有针对性：</strong>问题不是来自万能题库，而是来自<strong>项目要解决的问题 + 已经知道的信息 + 目前还不知道的信息</strong>。</p></div>
+<div class="timeline-step" data-step="03"><h3><span class="subnum">3.3</span><strong>自动识别关键访谈对象，并明确每个人的信息任务</strong></h3><p><strong class="key">先找信息缺口：</strong>先判断项目还缺什么，而不是看到组织架构上有哪些人就全部安排。</p><div class="flow"><strong class="flow-key">识别逻辑</strong><div class="flow-items"><span class="flow-node">项目要解决什么</span><span class="flow-arrow">→</span><span class="flow-node">已经知道什么</span><span class="flow-arrow">→</span><span class="flow-node">还缺什么</span><span class="flow-arrow">→</span><span class="flow-node">谁最可能掌握</span><span class="flow-arrow">→</span><span class="flow-node">谁可提供第二来源</span></div></div><p><strong class="key">每个人为什么要访谈：</strong>明确这个人最可能提供什么独特信息、本场重点验证什么、哪些重要说法还要找其他角色交叉确认。</p></div>
+<div class="timeline-step" data-step="04"><h3><span class="subnum">3.4</span><strong>自动生成可执行访谈计划，并输出可编辑 Excel</strong></h3><p><strong class="key">时间怎么估：</strong>可以按信息价值给主要领导、核心干系人、普通干系人和补充对象设置建议时长，并预留场间整理时间。</p><p><strong class="key">哪些只是建议值：</strong>访谈时长、分组和时段由 AI 先给建议；真正会影响排程的信息才向项目经理确认，已经给过的信息不重复问。</p><p><strong class="key">最终交付什么：</strong>直接生成可以继续修改的 Excel，至少包含日期、时间、时长、访谈对象、职务/部门、访谈目的、重点验证、组别和备注。</p></div>
+<div class="timeline-step" data-step="05"><h3><span class="subnum">3.5</span><strong>按正式模板批量生成客户发送版，并同步生成顾问内部版</strong></h3><p><strong class="key">对客户正式发送什么：</strong>客户版不是“问题列表”，而是正式对外文件：标题、致受访对象、项目说明和保密承诺、项目组与日期、主题分组、连续编号问题。</p><div class="flow"><strong class="flow-key">批量生成客户发送版</strong><div class="flow-items"><span class="flow-node">项目资料 + 对象名单</span><span class="flow-arrow">→</span><span class="flow-node">按角色分别生成问题</span><span class="flow-arrow">→</span><span class="flow-node">套用正式模板</span><span class="flow-arrow">→</span><span class="flow-node">批量生成多个 DOCX</span><span class="flow-arrow">→</span><span class="flow-node">下载后直接发送</span></div></div><p><strong class="key">一次生成多份：</strong>十几位、二十几位对象不需要项目组逐份复制模板；每份提纲根据受访者角色承担不同的信息任务，不能只换姓名和职务。</p><p><strong class="key">顾问自己看什么：</strong>内部版比客户版多保留已有信息、本场真正要解决的未知、核心问题、必要追问和后续验证提醒。</p></div>
+<div class="timeline-step" data-step="06"><h3><span class="subnum">3.6</span><strong>自动把信息缺口转化为中性、可验证的访谈问题</strong></h3><p><strong class="key">问题怎么生成：</strong>已有信息 → 尚未知什么 → 为什么这个角色能回答 → 开放、中性的主问题 → 根据回答继续追问。</p><p class="compare-label"><strong class="key">错误问法：</strong>资料没有证明“院领导会调整项目经理方案”，却直接问：</p><blockquote class="compare-box bad-box">“院级负责人通常在什么情况下调整项目经理建议？”</blockquote><p class="compare-label"><strong class="key">正确问法：</strong>先还原真实流程：</p><blockquote class="compare-box good-box">“请以最近一个实际项目为例，介绍方案从项目团队提出到最终确定经历了哪些步骤。”</blockquote><p class="compare-label"><strong class="key">动态追问：</strong>只有对方确认某个调整环节确实存在，再继续问：</p><blockquote class="compare-box follow-box">“刚才提到存在调整环节，通常由谁提出调整？主要依据是什么？”</blockquote><p><strong class="key">为什么这很重要：</strong>这不是措辞技巧，而是调研纪律——不能把尚未确认的行为、角色和机制预先写成企业事实。</p></div>
+<div class="timeline-step" data-step="07"><h3><span class="subnum">3.7</span><strong>自动整理访谈记录，形成可直接使用的专业纪要</strong></h3><p><strong class="key">给 AI 什么：</strong>转写文本、Word、会议记录、现场笔记等可读取材料。</p><p><strong class="key">最终输出什么：</strong>默认只保留顾问真正需要继续使用的内容：核心观点、关键事实与案例、待核实事项，以及对后续访谈有影响的信息。</p><p><strong class="key">怎么方便回查：</strong>原材料已有时间戳、说话人或页码时保留必要定位；没有的定位不自行制造。</p><p><strong class="key">AI 内部仍会守住什么：</strong>事实、观点、来源和不确定性的区分继续存在，但默认不把普通纪要写成一份复杂“证据治理报告”。</p></div>
+<div class="timeline-step" data-step="08"><h3><span class="subnum">3.8</span><strong>自动吸收每场访谈的新信息，持续刷新后续访谈</strong></h3><p><strong class="key">为什么要动态刷新：</strong>这是 TalkTrace 最核心的价值。后面的访谈不应该重复项目开始时已经写好的静态问题，而应该吸收前面真正得到的信息。</p><div class="work-grid"><div class="work-card"><strong>01 新知道了什么</strong><span>识别第一次出现的关键事实、案例、数字和解释。</span></div><div class="work-card"><strong>02 哪些问题解决了</strong><span>已充分回答的问题从后续提纲中删除或降级。</span></div><div class="work-card"><strong>03 哪些还要验证</strong><span>保留冲突、单一来源和新暴露问题，判断找谁确认。</span></div><div class="work-card"><strong>04 下一场怎么变</strong><span>增加新问题、调整重点，必要时补充访谈对象。</span></div></div><div class="flow"><strong class="flow-key">递进循环</strong><div class="flow-items"><span class="flow-node">访谈</span><span class="flow-arrow">→</span><span class="flow-node">获得新信息</span><span class="flow-arrow">→</span><span class="flow-node">更新项目理解</span><span class="flow-arrow">→</span><span class="flow-node">重新判断缺口</span><span class="flow-arrow">→</span><span class="flow-node">刷新下一场</span></div></div><p class="keybox"><strong class="key">真正的价值：</strong>TalkTrace 最核心的不是一次把二十份提纲写出来，而是<strong>让第十场访谈真正利用前九场访谈已经得到的信息。</strong></p></div>
+</section>
+<section class="chapter" id="s4">
+<h2><span class="num">04</span><strong>TalkTrace 做到访谈结束为止，正式诊断留给下一阶段</strong></h2>
+<p><strong class="key">TalkTrace 已经覆盖什么：</strong>项目资料整理、项目初步认知、对象识别、访谈计划、客户与内部提纲、访谈纪要，以及访谈后的递进刷新。</p>
+<p><strong class="key">访谈之后还有什么：</strong>跨访谈信息综合、问题识别、管理诊断、原因分析、优化方案和报告形成仍然存在。</p>
+<p><strong class="key">为什么不继续往里塞：</strong>一个 Skill 如果什么都做，很容易变成边界越来越大、什么都做不稳定。</p>
+<p class="keybox"><strong class="key">明确停止在哪里：</strong>TalkTrace 可以识别问题信号、信息矛盾和待验证事项，但停止在正式企业级管理诊断之前。</p>
+</section>
+<section class="chapter" id="s5">
+<h2><span class="num">05</span><strong>访谈结束以后，新的问题是怎样把大量材料真正变成“可分析的信息”</strong></h2>
+<p><strong class="key">现在常见的做法：</strong>把所有访谈纪要放在一起，让大模型直接总结“企业目前存在哪些问题”。这已经比完全人工快很多，但材料集中不等于信息已经组织好。</p>
+<h3><span class="subnum">5.1</span><strong>文件放在一起，不等于信息已经整理好</strong></h3>
+<p><strong class="key">文件仍然是按人分开的：</strong>总经理说了什么、人力说了什么、A 部门说了什么、B 部门说了什么。</p>
+<p><strong class="key">顾问真正要看的：</strong>围绕同一个管理问题，把所有相关事实、制度、数据和不同角色观点放在一起以后，到底能说明什么。</p>
+<h3><span class="subnum">5.2</span><strong>事实、制度和个人观点不能混在一起</strong></h3>
+<blockquote>“现在绩效考核基本没有什么用。”</blockquote>
+<p><strong class="key">不能直接升级成结论：</strong>这首先是一位业务负责人的观点，不能直接改写成“公司绩效考核制度没有发挥作用”。还需要继续看制度、实际数据、其他角色和真实案例。</p>
+<h3><span class="subnum">5.3</span><strong>AI 给出的诊断必须能够重新找到依据</strong></h3>
+<p><strong class="key">例如 AI 给出一句判断：</strong>“公司目前存在部门协同不足的问题。”</p>
+<p><strong class="key">顾问还会继续问：</strong>为什么这么判断？哪些人说过？有没有数据？制度怎么规定？有没有相反证据？如果这些问题回答不了，这句话就不能直接进入正式诊断。</p>
+</section>
+<section class="chapter" id="s6">
+<h2><span class="num">06</span><strong>TalkTrace 之外的下一步：先横向归集，再纵向追溯</strong></h2>
+<p><strong class="key">这一章讲什么：</strong>这里只讲 TalkTrace 之后值得继续解决的两个问题，不把它们回塞进 v0.1。</p>
+<div class="future-pair"><div class="future-card"><strong>横向归集</strong><span>围绕同一个管理问题，把制度、数据、总经理、人力、业务部门和项目经理的相关信息放在一起比较，从“谁说了什么”转成“这个问题有哪些证据”。</span></div><div class="future-card"><strong>纵向追溯</strong><span>任何一个正式诊断，都能够重新找到支撑它的事实、制度、数据、访谈来源和原始位置，顾问仍然能够说明“为什么这么判断”。</span></div></div>
+<p class="keybox"><strong class="key">最终要回答：</strong>顾问最后不是汇报“张总说了什么、李总说了什么”，而是要回答<strong>这个企业到底发生了什么，以及这个判断依据什么。</strong></p>
+</section>
+<section class="chapter" id="s7">
+<h2><span class="num">07</span><strong>最大的变化，不是学会更多 AI 工具，而是开始换一种方式组织工作</strong></h2>
+<div class="flow"><strong class="flow-key">演进路径</strong><div class="flow-items"><span class="flow-node">手工完成任务</span><span class="flow-arrow">→</span><span class="flow-node">对话式 AI 辅助</span><span class="flow-arrow">→</span><span class="flow-node">Prompt 讲清上下文</span><span class="flow-arrow">→</span><span class="flow-node">稳定方法沉淀成 Skill</span><span class="flow-arrow">→</span><span class="flow-node">Skill + 资料 + 工具形成工作流</span></div></div>
+<p class="keybox"><strong class="key">方法开始成为资产：</strong>原来大量依赖个人记忆、重复操作和临场发挥的工作方法，开始可以被保存、重复调用、测试、分享，并持续优化。</p>
+</section>
+<section class="chapter" id="s8">
+<h2><span class="num">08</span><strong>最后希望大家记住三个点</strong></h2>
+<h3><span class="subnum">8.1</span><strong>AI 提效不只是让它“帮我写”</strong></h3><p><strong class="key">第一：</strong>更大的空间是减少重复的信息整理、任务准备和机械性认知工作，把顾问时间更多留给判断和决策。</p>
+<h3><span class="subnum">8.2</span><strong>Skill 没有让大模型突然变得更聪明</strong></h3><p><strong class="key">第二：</strong>它解决的是一套已经验证有效的方法，不需要每次重新告诉 AI。</p>
+<h3><span class="subnum">8.3</span><strong>不需要一开始就建设一个很大的 AI 系统</strong></h3><p><strong class="key">第三：</strong>先从经常做、重复度高、方法稳定、现在做起来又比较麻烦的小场景开始。先用对话跑顺，再把真正稳定的方法沉淀成自己的第一个 Skill。</p>
+</section>
+</article></main></div>
+<a class="to-top" href="#top" id="toTop">↑</a>
+<footer><strong>TalkTrace v0.1</strong><br>公司 AI 分享材料 · GitHub 权威版</footer>
+<script>(()=>{const bar=document.getElementById('progress'),topBtn=document.getElementById('toTop'),links=[...document.querySelectorAll('.toc-link')],secs=[...document.querySelectorAll('.chapter')],mobile=document.getElementById('mobileToc');function update(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?Math.min(1,scrollY/max)*100:0)+'%';topBtn.classList.toggle('show',scrollY>650)}const obs=new IntersectionObserver(es=>{const v=es.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!v)return;const id=v.target.id;links.forEach(a=>a.classList.toggle('active',a.dataset.target===id));if(mobile)mobile.value=id},{rootMargin:'-18% 0px -60% 0px',threshold:[0,.15,.35]});secs.forEach(s=>obs.observe(s));mobile?.addEventListener('change',()=>document.getElementById(mobile.value)?.scrollIntoView({behavior:'smooth'}));addEventListener('scroll',update,{passive:true});update()})();</script>
+</body>
+</html>
