@@ -53,6 +53,8 @@ TalkTrace 整理的是“访谈来源信息”，不是自动判定企业事实�
 ## 6. 待核实事项
 ```
 
+需要稳定版式时，可使用 `assets/interview-notes-template.md`。模板只规定最低结构；没有来源支持的字段留空或删除，不得为了填满模板补造信息。
+
 如果输入材料没有基本信息，不要自行补造。
 
 ## 4. Meaning of “factual statement”
