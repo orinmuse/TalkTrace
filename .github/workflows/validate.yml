@@ -29,6 +29,7 @@ jobs:
               Path("evals/README.md"),
               Path("evals/cases.md"),
               Path("evals/sequential-context.md"),
+              Path("evals/premise-safety.md"),
               Path("workbuddy/SMOKE.md"),
           ]
 
@@ -63,22 +64,44 @@ jobs:
           if "当前 AI 工作上下文" not in skill and "当前上下文" not in skill:
               raise SystemExit("SKILL.md must define current context as the working memory")
 
+          if "是否存在/是否发生/是否普遍" not in skill:
+              raise SystemExit("SKILL.md must propagate semantic premise-safety")
+
           plan = Path("references/interview-plan.md").read_text(encoding="utf-8")
           if "重点验证/信息缺口" not in plan:
               raise SystemExit("Interview Plan must expose information-gap semantics")
 
           guide = Path("references/interview-guide.md").read_text(encoding="utf-8")
           for required_phrase in (
-              "Two-stage questioning",
+              "Semantic premise gates",
+              "Existence gate",
+              "Continuation gate",
+              "Scope / recurrence gate",
+              "Actor / authority gate",
+              "Sequence / mechanism gate",
+              "Causality gate",
+              "Case-to-mechanism rule",
               "Premise preflight",
-              "只有在以下情况下可以作为既定前提",
-              "先还原真实发生的步骤",
           ):
               if required_phrase not in guide:
-                  raise SystemExit(f"Interview Guide missing premise-safety mechanism: {required_phrase}")
+                  raise SystemExit(f"Interview Guide missing semantic premise-safety mechanism: {required_phrase}")
 
           # Unsafe sentences may intentionally appear as documented counterexamples.
-          # CI validates the required prevention mechanism instead of banning the text itself.
+          # CI validates the general prevention mechanism instead of a keyword blacklist.
+
+          premise = Path("evals/premise-safety.md").read_text(encoding="utf-8")
+          for required_phrase in (
+              "R1｜Existence presupposition",
+              "R2｜Continuation presupposition",
+              "R4｜Single-case → recurring mechanism",
+              "R5｜Actor / authority presupposition",
+              "R6｜Sequence / mechanism presupposition",
+              "R7｜Causal presupposition",
+              "R8｜Conditional wording can still be unsafe",
+              "Semantic, not keyword-only",
+          ):
+              if required_phrase not in premise:
+                  raise SystemExit(f"Premise-safety regression set missing assertion: {required_phrase}")
 
           delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
           for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文"):
