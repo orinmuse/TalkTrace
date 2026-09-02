@@ -1,0 +1,58 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  skill-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate TalkTrace Skill package
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          import sys
+
+          required = [
+              Path("SKILL.md"),
+              Path("references/interview-plan.md"),
+              Path("references/interview-guide.md"),
+              Path("references/interview-notes.md"),
+              Path("assets/interview-plan-template.csv"),
+              Path("assets/interview-guide-client.md"),
+              Path("assets/interview-guide-internal.md"),
+              Path("assets/interview-notes-template.md"),
+              Path("evals/cases.md"),
+          ]
+
+          missing = [str(p) for p in required if not p.is_file()]
+          if missing:
+              print("Missing required files:", *missing, sep="\n- ")
+              sys.exit(1)
+
+          skill = Path("SKILL.md").read_text(encoding="utf-8")
+          if not skill.startswith("---\n"):
+              raise SystemExit("SKILL.md must start with YAML frontmatter")
+
+          match = re.match(r"---\n(.*?)\n---\n", skill, flags=re.S)
+          if not match:
+              raise SystemExit("SKILL.md frontmatter is malformed")
+
+          frontmatter = match.group(1)
+          for key in ("name:", "description:"):
+              if key not in frontmatter:
+                  raise SystemExit(f"SKILL.md frontmatter missing {key}")
+
+          refs = [
+              "references/interview-plan.md",
+              "references/interview-guide.md",
+              "references/interview-notes.md",
+          ]
+          for ref in refs:
+              if ref not in skill:
+                  raise SystemExit(f"SKILL.md does not route to {ref}")
+
+          print("TalkTrace Skill structure: PASS")
