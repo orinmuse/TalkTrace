@@ -2,7 +2,7 @@
 
 ## Purpose
 
-验证 TalkTrace 的新版核心价值：**前一场访谈进入当前上下文以后，后一场访谈应因为新增信息而实质改善。**
+验证 TalkTrace 的访谈递进方法：**前一场访谈进入当前工作状态以后，后一场访谈应因为新增信息而实质改善。**
 
 本案例是公开合成 regression case，不作为最终 Capability Acceptance 的唯一 held-out evidence。最终发布前仍需 Skill Manager 预注册独立 sealed held-out cases。
 
@@ -77,7 +77,7 @@
 
 ---
 
-# Stage 2｜New interview enters the current context
+# Stage 2｜New interview enters the project work state
 
 ## New transcript｜项目经理陈柏
 
@@ -187,8 +187,8 @@
 3. 能把不同未知问题分配给更合适的后续角色；
 4. Stage 4 相比无前序访谈时明显减少重复，并利用新案例形成更高价值验证；
 5. Stage 4 不预设吴川拍板，也不预设运营中心具有正式修改权；
-6. 不要求建立项目状态文件、数据库、RAG 或额外用户维护动作；
-7. 若前序资料不在当前上下文，应透明说明无法可靠完成增量刷新。
+6. 将有依据的新增、冲突、待验证项和后续访谈变化增量写回本地 Markdown 项目记忆，且不要求用户手工维护状态；
+7. 若前序资料既不在项目记忆、也不在当前可访问来源中，应透明说明无法可靠完成增量刷新。
 
 # Acceptance note
 

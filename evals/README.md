@@ -28,11 +28,23 @@ TalkTrace 的公开仓库测试分为两类：
 
 ### `sequential-context.md`
 
-验证新版核心机制：
+保留同一工作上下文中的递进访谈回归机制：
 
-> Interview N 进入当前上下文后，TalkTrace 是否能识别新增/冲突/待验证，并实质改善 Interview N+1。
+> Interview N 进入当前项目工作状态后，TalkTrace 是否能识别新增/冲突/待验证，并实质改善 Interview N+1。
 
 这是公开工程 regression case，不是最终 sealed acceptance case。
+
+### `project-memory.md`
+
+验证新的本地 Markdown 项目记忆架构：
+
+- 首次项目初始化和来源登记；
+- 在全新会话中从同一项目文件夹恢复背景、语境与项目状态；
+- 新材料/访谈进入后的增量写回；
+- 原文件不变、来源可回查、冲突不被静默覆盖；
+- 项目目录只读、记忆损坏或项目身份不一致时的安全降级。
+
+这项测试必须真正结束旧会话，不能用同一聊天上下文模拟持久化。
 
 ### `premise-safety.md`
 
@@ -58,7 +70,9 @@ TalkTrace 的公开仓库测试分为两类：
 - source / uncertainty discipline；
 - insufficient-input degradation；
 - diagnosis boundary；
-- sequential interview delta / next-guide improvement。
+- sequential interview delta / next-guide improvement；
+- clean-session local Markdown memory recovery；
+- incremental state update, source traceability and failure recovery。
 
 正式 Outcome Eval 继续采用：
 

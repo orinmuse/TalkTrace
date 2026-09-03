@@ -9,10 +9,12 @@
 - 根目录包含 `SKILL.md`；
 - `SKILL.md` frontmatter 至少包含 `name` 和 `description`；
 - `references/` 与 `assets/` 保持相对路径；
+- `references/project-memory.md` 被包含；
 - `references/interview-delta.md` 被包含；
+- `assets/project-memory-template.md` 和 `assets/source-register-template.md` 被包含；
 - 不包含真实客户资料、私有访谈或凭证；
 - 不需要安装第三方依赖；
-- 不要求项目状态文件、数据库、RAG 或 Agent。
+- 不要求数据库、RAG、远程状态服务或 Agent。
 
 ## 2. Import
 
@@ -35,7 +37,7 @@
 
 > 我有一些项目资料，需要帮我制定访谈计划。
 
-期望：TalkTrace 能被正确召唤或明确可用，不要求用户先输入命令式 Skill ID、初始化项目或创建状态文件。
+期望：TalkTrace 能被正确召唤或明确可用。用户不需要输入命令式 Skill ID，也不需要手工初始化项目或创建状态文件；如果当前项目还没有记忆，TalkTrace 应自动初始化最小 Markdown 项目记忆。
 
 ---
 
@@ -137,7 +139,7 @@
 
 #### Step 2
 
-在**同一个 WorkBuddy 工作上下文**中加入陈柏 transcript。
+在同一个 WorkBuddy 工作上下文中加入陈柏 transcript，并把有依据的变化写入本地 Markdown 项目记忆。
 
 输入：
 
@@ -166,7 +168,48 @@
 - 不预设运营中心具有正式修改权限；
 - 把更适合唐霖回答的制度/权限问题路由给唐霖，而不是全部塞给吴川。
 
-**S6 是新版 v0.1 的核心 smoke。** 如果无法在同一当前上下文中利用前序访谈改进下一场提纲，记录 FAIL 或明确 runtime context limitation；不得通过增加持久数据库/RAG/Agent 来静默修复。
+**S6 验证访谈 Delta 方法及其写回行为。** 如果无法利用前序访谈改进下一场提纲，或声称写回但项目记忆没有实际变化，记录 FAIL；不得通过增加数据库/RAG/Agent 来静默修复。
+
+---
+
+### S7｜Clean-session Local Project Memory
+
+使用 `evals/project-memory.md`，必须在一个可持续访问的合成项目目录中执行。
+
+#### Step 1 — Initialize
+
+在项目目录尚无 `talktrace/` 时输入：
+
+> 根据当前项目资料建立项目记忆，并告诉我目前项目处于什么阶段、已经知道什么、还缺什么。
+
+确认实际创建：
+
+- `talktrace/project-memory.md`；
+- `talktrace/source-register.md`；
+- 必要子目录。
+
+同时确认原始材料的内容、名称和位置没有被修改。
+
+#### Step 2 — Restart clean
+
+结束当前会话，开启一个不包含任何旧聊天记录的全新 WorkBuddy 会话，重新打开同一项目目录后输入：
+
+> 继续这个项目。现在最需要推进什么？下一场访谈应该重点解决哪些问题？
+
+期望：
+
+- 首先加载本地项目记忆和来源登记；
+- 正确恢复项目目标、语境、当前阶段、已完成工作、核心缺口和下一步；
+- 不声称记得旧聊天；
+- 不要求重新提供目录中已经可访问的材料。
+
+#### Step 3 — Incremental update
+
+新增一份合成访谈记录，要求整理纪要并更新项目记忆。确认受访者陈述、已回答问题、冲突、下一验证对象和项目状态被增量更新，不受影响的既有内容仍然保留，并在 `history/` 留下重要更新记录。
+
+#### Runtime blocker
+
+如果 WorkBuddy 不能在新会话中持续访问或写入同一本地项目目录，记录 **persistent local-folder runtime blocker / FAIL**。不得继续用同一聊天上下文模拟 S7 PASS。
 
 ## 4. Pass condition
 
@@ -174,11 +217,12 @@ WorkBuddy target-runtime smoke 只有在以下条件都满足时才 PASS：
 
 1. Skill 能正常导入；
 2. references/assets 能正常读取；
-3. S1—S6 的核心行为与 Skill contract 一致；
+3. S1—S7 的核心行为与 Skill contract 一致；
 4. S3 无 premise-safety hard fail；
-5. S6 能使用当前上下文产生实质的 interview delta 和 next-guide improvement；
-6. 没有因平台差异导致明显机制泄漏或用户额外配置负担；
-7. TalkTrace 本体未引入额外第三方 API、凭证、网络回调、遥测、持久状态或 RAG；
-8. 用户要求 Excel 时，真实文件能力被如实验证，不用文本表格冒充。
+5. S6 能产生实质的 interview delta、next-guide improvement 和实际项目记忆写回；
+6. S7 能在全新会话中从同一本地项目目录恢复项目，并完成增量更新；
+7. 没有因平台差异导致明显机制泄漏或用户额外配置负担；
+8. TalkTrace 本体未引入额外第三方 API、凭证、网络回调、遥测、数据库或 RAG；
+9. 用户要求 Excel 时，真实文件能力被如实验证，不用文本表格冒充。
 
 Target-runtime PASS 只是 Engineering Evidence，不等于 TalkTrace Capability Accepted / Released。
