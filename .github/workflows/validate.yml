@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Validate TalkTrace Skill package
         shell: python
         run: |
@@ -26,6 +27,7 @@ jobs:
               Path("assets/interview-guide-client.md"),
               Path("assets/interview-guide-internal.md"),
               Path("assets/interview-notes-template.md"),
+              Path("packaging/runtime-files.txt"),
               Path("evals/README.md"),
               Path("evals/cases.md"),
               Path("evals/cold-start.md"),
@@ -38,6 +40,38 @@ jobs:
           if missing:
               print("Missing required files:", *missing, sep="\n- ")
               sys.exit(1)
+
+          runtime_manifest = Path("packaging/runtime-files.txt")
+          runtime_files = []
+          for raw in runtime_manifest.read_text(encoding="utf-8").splitlines():
+              line = raw.strip()
+              if not line or line.startswith("#"):
+                  continue
+              path = Path(line)
+              if path.is_absolute() or ".." in path.parts:
+                  raise SystemExit(f"Unsafe runtime manifest path: {line}")
+              if line in runtime_files:
+                  raise SystemExit(f"Duplicate runtime manifest path: {line}")
+              if not path.is_file():
+                  raise SystemExit(f"Runtime manifest file missing: {line}")
+              runtime_files.append(line)
+
+          expected_runtime = [
+              "SKILL.md",
+              "references/interview-plan.md",
+              "references/interview-guide.md",
+              "references/interview-notes.md",
+              "references/interview-delta.md",
+              "assets/interview-plan-template.csv",
+              "assets/interview-guide-client.md",
+              "assets/interview-guide-internal.md",
+              "assets/interview-notes-template.md",
+          ]
+          if runtime_files != expected_runtime:
+              raise SystemExit(
+                  "Public runtime manifest drifted from the frozen nine-file contract:\n"
+                  + "\n".join(runtime_files)
+              )
 
           skill = Path("SKILL.md").read_text(encoding="utf-8")
           if not skill.startswith("---\n"):
@@ -168,3 +202,39 @@ jobs:
                   raise SystemExit(f"WorkBuddy smoke missing lightweight UX check: {required_phrase}")
 
           print("TalkTrace Public standalone structure: PASS")
+          print("TalkTrace Public runtime manifest: PASS")
+
+      - name: Assemble clean TalkTrace runtime package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf dist
+          mkdir -p dist/TalkTrace
+
+          while IFS= read -r raw || [[ -n "$raw" ]]; do
+            file="${raw%%#*}"
+            file="$(printf '%s' "$file" | xargs)"
+            [[ -z "$file" ]] && continue
+            mkdir -p "dist/TalkTrace/$(dirname "$file")"
+            cp "$file" "dist/TalkTrace/$file"
+          done < packaging/runtime-files.txt
+
+          grep -vE '^[[:space:]]*(#|$)' packaging/runtime-files.txt | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sort > /tmp/expected-runtime-files.txt
+          find dist/TalkTrace -type f -printf '%P\n' | sort > /tmp/actual-runtime-files.txt
+          diff -u /tmp/expected-runtime-files.txt /tmp/actual-runtime-files.txt
+
+          if find dist/TalkTrace -type f | grep -Eq '/(evals|docs|workbuddy|\.github|packaging)/'; then
+            echo "Maintainer-only files leaked into runtime package"
+            exit 1
+          fi
+
+          echo "Clean TalkTrace runtime package: PASS"
+          find dist/TalkTrace -type f -printf '%P\n' | sort
+
+      - name: Upload colleague-distributable runtime package
+        uses: actions/upload-artifact@v4
+        with:
+          name: TalkTrace-public-v0.1-runtime-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
