@@ -85,14 +85,18 @@ TalkTrace 可以识别问题线索、冲突、候选假设和待验证事项，�
 
 ## 安装与运行
 
-### 最简单的方式
+### 推荐方式：使用干净的 TalkTrace 运行包
 
-1. 下载本仓库 ZIP，或克隆仓库；
-2. 保持 `TalkTrace` 文件夹结构不变；
-3. 在支持文件夹型 Skill / 自定义 Skill 的宿主环境中导入该文件夹；
+同事安装时，推荐使用已经打包好的 **TalkTrace Public runtime package**，不要把整个 GitHub 开发仓库当作安装对象。
+
+1. 获取 `TalkTrace-public-v0.1-runtime-<commit SHA>` 运行包 ZIP；
+2. 解压后应得到一个 `TalkTrace/` 文件夹；
+3. 在支持文件夹型 Skill / 自定义 Skill 的宿主环境中导入这个 `TalkTrace/` 文件夹；
 4. 上传项目资料并直接用自然语言提出任务。
 
-真正的运行时核心只依赖：
+候选阶段，运行包由 GitHub Actions 从公开源码自动生成；正式发布后应优先使用对应 Release 提供的运行包。维护者也可以直接把生成后的 ZIP 发给同事，使用者不需要理解仓库中的测试、CI 或适配文件。
+
+运行包只包含：
 
 ```text
 TalkTrace/
@@ -109,7 +113,9 @@ TalkTrace/
     └── interview-notes-template.md
 ```
 
-`README.md`、`evals/`、`.github/`、`docs/`、`workbuddy/` 是仓库维护、测试或运行环境适配资料，不是 TalkTrace 的必需依赖。
+仓库中的 `README.md`、`evals/`、`.github/`、`docs/`、`workbuddy/`、`packaging/` 属于维护、测试、打包或运行环境适配资料，不进入同事安装的运行包。
+
+分发包文件清单由 `packaging/runtime-files.txt` 统一定义，CI 会按该清单自动组装并校验，避免手工维护第二套 Skill 文件。
 
 具体“导入 Skill”的入口由宿主平台决定；TalkTrace 不要求额外第三方 API、账号凭证、独立网络回调或遥测。
 
