@@ -1,0 +1,81 @@
+name: context-reload-regression
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  stateless-context-reload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate stateless context reload contract
+        shell: python
+        run: |
+          from pathlib import Path
+
+          skill = Path("SKILL.md").read_text(encoding="utf-8")
+          delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
+          regression = Path("evals/stateless-context-reload.md").read_text(encoding="utf-8")
+
+          for phrase in (
+              "Stateless context reload is the working memory",
+              "无状态上下文重载",
+              "不得暗示自己记得以前会话",
+              "多场历史语料整体刷新",
+          ):
+              if phrase not in skill:
+                  raise SystemExit(f"SKILL.md missing context reload guard: {phrase}")
+
+          for phrase in (
+              "Stateless reload preflight",
+              "Mode A｜单场新增访谈刷新",
+              "Mode B｜多场历史语料整体刷新",
+              "不要求把多场历史语料切分成“旧状态 + 最新一场”",
+          ):
+              if phrase not in delta:
+                  raise SystemExit(f"interview-delta.md missing batch/reload behavior: {phrase}")
+
+          for phrase in (
+              "R1｜New session, prior files available",
+              "R2｜New session, prior files unavailable",
+              "R3｜Batch refresh from multiple completed interviews",
+              "已回答问题",
+              "冲突信息",
+              "单一来源待验证",
+              "新暴露问题",
+          ):
+              if phrase not in regression:
+                  raise SystemExit(f"reload regression case missing assertion: {phrase}")
+
+          forbidden_names = {"project-memory.md", "source-register.md"}
+          found = [str(p) for p in Path(".").rglob("*") if p.is_file() and p.name.lower() in forbidden_names]
+          if found:
+              raise SystemExit("Persistent-state file introduced: " + ", ".join(found))
+
+          runtime = []
+          for raw in Path("packaging/runtime-files.txt").read_text(encoding="utf-8").splitlines():
+              line = raw.strip()
+              if line and not line.startswith("#"):
+                  runtime.append(line)
+
+          expected_runtime = [
+              "SKILL.md",
+              "references/interview-plan.md",
+              "references/interview-guide.md",
+              "references/interview-notes.md",
+              "references/interview-delta.md",
+              "assets/interview-plan-template.csv",
+              "assets/interview-guide-client.md",
+              "assets/interview-guide-internal.md",
+              "assets/interview-notes-template.md",
+          ]
+          if runtime != expected_runtime:
+              raise SystemExit("Runtime manifest changed during narrow context-reload patch")
+
+          print("Stateless context reload contract: PASS")
+          print("Single-interview refresh mode: PASS")
+          print("Multi-interview corpus refresh mode: PASS")
+          print("No persistent-state files introduced: PASS")
+          print("Runtime manifest unchanged: PASS")
