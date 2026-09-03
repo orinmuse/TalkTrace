@@ -1,0 +1,11 @@
+# TalkTrace Public v0.1 runtime package manifest
+# One repository-relative path per line. CI uses this file to build the clean colleague-distributable package.
+SKILL.md
+references/interview-plan.md
+references/interview-guide.md
+references/interview-notes.md
+references/interview-delta.md
+assets/interview-plan-template.csv
+assets/interview-guide-client.md
+assets/interview-guide-internal.md
+assets/interview-notes-template.md
