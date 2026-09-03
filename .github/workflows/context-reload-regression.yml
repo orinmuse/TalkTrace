@@ -32,7 +32,7 @@ jobs:
               "Stateless reload preflight",
               "Mode A｜单场新增访谈刷新",
               "Mode B｜多场历史语料整体刷新",
-              "不要求把多场历史语料切分成“旧状态 + 最新一场”",
+              "该模式直接从整个当前语料重建当前验证状态",
           ):
               if phrase not in delta:
                   raise SystemExit(f"interview-delta.md missing batch/reload behavior: {phrase}")
