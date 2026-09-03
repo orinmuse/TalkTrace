@@ -113,7 +113,7 @@ TalkTrace/
     └── interview-notes-template.md
 ```
 
-如果使用 ZIP 分发，建议文件名统一为：
+如果使用 ZIP 分发，统一命名为：
 
 `TalkTrace-v0.1.0.zip`
 
