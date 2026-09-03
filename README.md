@@ -94,13 +94,9 @@ TalkTrace 的核心不是固定模板，而是四条工作纪律：
 
 ## 安装
 
-### 推荐方式
+TalkTrace 的版本权威在 GitHub Release；实际导入 Skill 时，推荐使用干净的 TalkTrace 运行目录或由维护者提供的分发 ZIP，而不是把整个开发仓库作为 Skill 运行目录。
 
-使用干净的 TalkTrace 运行包：
-
-`TalkTrace-v0.1.0.zip`
-
-解压后应得到一个 `TalkTrace/` 文件夹，包含：
+标准运行目录应为：
 
 ```text
 TalkTrace/
@@ -117,7 +113,11 @@ TalkTrace/
     └── interview-notes-template.md
 ```
 
-在支持文件夹型 Skill / 自定义 Skill 的宿主环境中导入该 `TalkTrace/` 文件夹即可。
+如果使用 ZIP 分发，建议文件名统一为：
+
+`TalkTrace-v0.1.0.zip`
+
+在支持文件夹型 Skill / 自定义 Skill 的宿主环境中导入其中的 `TalkTrace/` 文件夹即可。
 
 GitHub 仓库同时包含测试、CI、分享材料和维护文件，因此**不要把整个仓库目录直接当成 Skill 运行目录**。
 
