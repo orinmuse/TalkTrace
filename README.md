@@ -89,14 +89,14 @@ TalkTrace 可以识别问题线索、冲突、候选假设和待验证事项，�
 
 ### 推荐方式：使用干净的 TalkTrace 运行包
 
-同事安装时，推荐使用已经打包好的 **TalkTrace Public runtime package**，不要把整个 GitHub 开发仓库当作安装对象。
+同事安装时，推荐使用已经打包好的 **TalkTrace runtime package**，不要把整个 GitHub 开发仓库当作安装对象。
 
-1. 获取 `TalkTrace-public-v0.1-runtime-<commit SHA>` 运行包 ZIP；
+1. 获取 `TalkTrace-v0.1.0-runtime-<commit SHA>` 运行包 ZIP；
 2. 解压后应得到一个 `TalkTrace/` 文件夹；
 3. 在支持文件夹型 Skill / 自定义 Skill 的宿主环境中导入这个 `TalkTrace/` 文件夹；
 4. 上传项目资料或授权宿主访问已有项目文件，并直接用自然语言提出任务。
 
-候选阶段，运行包由 GitHub Actions 从公开源码自动生成；正式发布后应优先使用对应 Release 提供的运行包。维护者也可以直接把生成后的 ZIP 发给同事，使用者不需要理解仓库中的测试、CI 或适配文件。
+运行包由 GitHub Actions 从公开源码自动生成；正式发布后优先使用与当前版本对应的运行包。维护者也可以直接把生成后的 ZIP 发给同事，使用者不需要理解仓库中的测试、CI 或适配文件。
 
 运行包只包含：
 
@@ -129,9 +129,9 @@ TalkTrace 本身保持零私有依赖，但实际能读取什么文件、能否�
 - 已授权工作区历史文件：宿主能够列出并读取时，TalkTrace 可以在新会话中按当前任务需要重新读取相关现成文件，重建本次上下文；这不是跨会话持久记忆；
 - Excel/Word artifact：宿主支持文件生成时可以交付真实文件；不支持时应如实说明，不能把 Markdown 表格冒充为 Excel；
 - 音频：宿主能可靠转写时可使用转写结果；否则请提供可读转写文本；
-- 长项目历史：Public v0.1 不创建或维护持久 Project Memory；如果宿主不能访问历史文件，就无法可靠恢复历史上下文，必须明确降级。
+- 长项目历史：TalkTrace v0.1.0 不创建或维护持久 Project Memory；如果宿主不能访问历史文件，就无法可靠恢复历史上下文，必须明确降级。
 
-## Public v0.1 明确不做
+## v0.1.0 明确不做
 
 - 持久 Project Memory / 项目数据库；
 - RAG / 向量数据库；
