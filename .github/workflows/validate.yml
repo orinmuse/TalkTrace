@@ -28,6 +28,7 @@ jobs:
               Path("assets/interview-notes-template.md"),
               Path("evals/README.md"),
               Path("evals/cases.md"),
+              Path("evals/cold-start.md"),
               Path("evals/sequential-context.md"),
               Path("evals/premise-safety.md"),
               Path("workbuddy/SMOKE.md"),
@@ -71,13 +72,23 @@ jobs:
               "默认不要机械展示给用户",
               "顾问可以直接继续使用的轻量工作纪要",
               "不默认展开完整竞争假设树",
+              "Cold-start / broad request routing",
+              "先有用，再澄清",
+              "Quick Plan / 快速计划",
+              "Next Interview Refresh",
           ):
               if required_phrase not in skill:
-                  raise SystemExit(f"SKILL.md missing lightweight UX guard: {required_phrase}")
+                  raise SystemExit(f"SKILL.md missing public UX guard: {required_phrase}")
 
           plan = Path("references/interview-plan.md").read_text(encoding="utf-8")
-          if "重点验证/信息缺口" not in plan:
-              raise SystemExit("Interview Plan must expose information-gap semantics")
+          for required_phrase in (
+              "重点验证/信息缺口",
+              "Quick Plan｜快速计划",
+              "Scheduled Plan｜正式排程",
+              "不伪造人员可用时间",
+          ):
+              if required_phrase not in plan:
+                  raise SystemExit(f"Interview Plan missing public product behavior: {required_phrase}")
 
           guide = Path("references/interview-guide.md").read_text(encoding="utf-8")
           for required_phrase in (
@@ -133,6 +144,19 @@ jobs:
               if required_phrase not in sequential:
                   raise SystemExit(f"Sequential regression case missing assertion: {required_phrase}")
 
+          cold_start = Path("evals/cold-start.md").read_text(encoding="utf-8")
+          for required_phrase in (
+              "C1｜Broad ask with project materials",
+              "C2｜Named functional leader, no project context",
+              "C3｜Plan request without scheduling constraints",
+              "C4｜Natural refresh request",
+              "先有用，再澄清",
+              "不暴露内部机制",
+              "Quick Plan",
+          ):
+              if required_phrase not in cold_start:
+                  raise SystemExit(f"Cold-start regression set missing assertion: {required_phrase}")
+
           smoke = Path("workbuddy/SMOKE.md").read_text(encoding="utf-8")
           if "S6｜Sequential Interview Delta / Refresh" not in smoke:
               raise SystemExit("WorkBuddy smoke must include sequential-context validation")
@@ -143,4 +167,4 @@ jobs:
               if required_phrase not in smoke:
                   raise SystemExit(f"WorkBuddy smoke missing lightweight UX check: {required_phrase}")
 
-          print("TalkTrace context-driven Skill structure: PASS")
+          print("TalkTrace Public standalone structure: PASS")
