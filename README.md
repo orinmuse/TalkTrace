@@ -10,6 +10,8 @@ TalkTrace 是一个面向管理咨询顾问的调研访谈 Skill。
 
 当前正式版本：**v0.1.0**
 
+开发候选新增按需启用的公司访谈提纲格式：邀请函、项目类型选题、角色差异和收尾结构。仅在明确要求公司格式或沿用所提供模板时启用；不需要原始客户案例或私有知识库。该候选尚未发布，不改变下方 v0.1.0 Release 的身份。
+
 [查看 TalkTrace v0.1.0 Release](https://github.com/orinmuse/TalkTrace/releases/tag/v0.1.0)
 
 ## TalkTrace 可以直接做什么
@@ -112,6 +114,8 @@ TalkTrace/
     ├── interview-guide-internal.md
     └── interview-notes-template.md
 ```
+
+上述目录为已发布 v0.1.0 的结构。开发候选还包含 `references/company-interview-guide.md` 与 `assets/interview-guide-company-client.md`；从候选分支安装时，必须按 `packaging/runtime-files.txt` 保留完整运行文件，不混用不同提交版本。
 
 如果使用 ZIP 分发，统一命名为：
 

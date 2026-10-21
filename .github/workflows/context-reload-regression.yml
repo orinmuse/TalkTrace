@@ -70,12 +70,14 @@ jobs:
               "assets/interview-guide-client.md",
               "assets/interview-guide-internal.md",
               "assets/interview-notes-template.md",
+              "references/company-interview-guide.md",
+              "assets/interview-guide-company-client.md",
           ]
           if runtime != expected_runtime:
-              raise SystemExit("Runtime manifest changed during narrow context-reload patch")
+              raise SystemExit("Runtime manifest differs from the approved candidate contract")
 
           print("Stateless context reload contract: PASS")
           print("Single-interview refresh mode: PASS")
           print("Multi-interview corpus refresh mode: PASS")
           print("No persistent-state files introduced: PASS")
-          print("Runtime manifest unchanged: PASS")
+          print("Runtime candidate manifest: PASS")
