@@ -248,6 +248,8 @@
 
 ## 7. Client-facing version
 
+用户要求公司格式、天强格式，或明确沿用其提供的公司提纲时，同时读取 `references/company-interview-guide.md`，按项目类型与角色选题，并按需使用 `assets/interview-guide-company-client.md`。该表达层不替代本文件的前提安全与时间取舍规则；普通客户发送版不自动加公司品牌、委托或保密承诺。
+
 适合提前发送给客户：
 
 - 正式、简洁；

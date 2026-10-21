@@ -5,6 +5,8 @@ description: 面向咨询顾问的轻量调研访谈 Skill。使用当前会话�
 
 # TalkTrace
 
+版本：v0.1.1。公司格式增强分发版；WorkBuddy 安装加载与现场使用仍需目标环境确认。
+
 ## 1. Mission
 
 TalkTrace 负责咨询项目的**调研访谈生命周期**，不是三个彼此孤立的文档生成器。
@@ -57,6 +59,7 @@ Public v0.1 **不建立跨会话持久记忆**。每次任务的工作上下文�
 
 - 项目理解、信息缺口、访谈对象、时长、分组、排程 → `references/interview-plan.md`
 - 访谈问题、客户发送版、顾问内部版、角色差异、中性求证 → `references/interview-guide.md`
+- 公司格式、天强格式或沿用用户提供的公司访谈提纲 → 同时读取 `references/company-interview-guide.md`；完整客户发送稿可用 `assets/interview-guide-company-client.md`，普通任务不默认启用公司署名或承诺。
 - 转写稿、访谈记录、结构化纪要、来源与不确定性 → `references/interview-notes.md`
 - 新增信息、冲突、待验证、新问题、后续提纲刷新、补访建议 → `references/interview-delta.md`
 

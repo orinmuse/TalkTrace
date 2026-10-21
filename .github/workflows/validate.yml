@@ -27,6 +27,9 @@ jobs:
               Path("assets/interview-guide-client.md"),
               Path("assets/interview-guide-internal.md"),
               Path("assets/interview-notes-template.md"),
+              Path("references/company-interview-guide.md"),
+              Path("assets/interview-guide-company-client.md"),
+              Path("evals/company-guide.md"),
               Path("packaging/runtime-files.txt"),
               Path("evals/README.md"),
               Path("evals/cases.md"),
@@ -66,10 +69,12 @@ jobs:
               "assets/interview-guide-client.md",
               "assets/interview-guide-internal.md",
               "assets/interview-notes-template.md",
+              "references/company-interview-guide.md",
+              "assets/interview-guide-company-client.md",
           ]
           if runtime_files != expected_runtime:
               raise SystemExit(
-                  "TalkTrace runtime manifest drifted from the frozen nine-file contract:\n"
+                  "TalkTrace runtime manifest drifted from the explicit eleven-file v0.1.1 contract:\n"
                   + "\n".join(runtime_files)
               )
 
@@ -201,6 +206,13 @@ jobs:
               if required_phrase not in smoke:
                   raise SystemExit(f"WorkBuddy smoke missing lightweight UX check: {required_phrase}")
 
+          # Check dependency closure in the actual distributable file set.
+          for name in runtime_files:
+              content = Path(name).read_text(encoding="utf-8")
+              for dependency in re.findall(r"`((?:references|assets)/[^`\s]+\.md)`", content):
+                  if dependency not in runtime_files:
+                      raise SystemExit(f"Unpackaged runtime dependency: {name} -> {dependency}")
+
           print("TalkTrace standalone structure: PASS")
           print("TalkTrace runtime manifest: PASS")
 
@@ -234,7 +246,7 @@ jobs:
       - name: Upload colleague-distributable runtime package
         uses: actions/upload-artifact@v4
         with:
-          name: TalkTrace-v0.1.0-runtime-${{ github.sha }}
+          name: TalkTrace-v0.1.1-runtime-${{ github.sha }}
           path: dist/
           if-no-files-found: error
           retention-days: 30
