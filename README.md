@@ -8,11 +8,11 @@ TalkTrace 是一个面向管理咨询顾问的调研访谈 Skill。
 
 适合组织诊断、管理调研、战略访谈、职能访谈等需要连续访谈和交叉验证的咨询场景。
 
-当前正式版本：**v0.1.0**
+当前分发版本：**v0.1.1**（WorkBuddy 同事试用包）
 
-开发候选新增按需启用的公司访谈提纲格式：邀请函、项目类型选题、角色差异和收尾结构。仅在明确要求公司格式或沿用所提供模板时启用；不需要原始客户案例或私有知识库。该候选尚未发布，不改变下方 v0.1.0 Release 的身份。
+本版增加按需启用的公司访谈提纲格式、项目类型选题和角色差异规则。已完成结构验证与云端独立定向复核；WorkBuddy 本版安装加载及真实项目现场效果仍待验证，不代表对该目标环境已实测通过。
 
-[查看 TalkTrace v0.1.0 Release](https://github.com/orinmuse/TalkTrace/releases/tag/v0.1.0)
+版本说明见 [v0.1.1](releases/v0.1.1.md)。历史 [v0.1.0 Release](https://github.com/orinmuse/TalkTrace/releases/tag/v0.1.0) 保留不变。
 
 ## TalkTrace 可以直接做什么
 
@@ -107,19 +107,21 @@ TalkTrace/
 │   ├── interview-plan.md
 │   ├── interview-guide.md
 │   ├── interview-notes.md
-│   └── interview-delta.md
+│   ├── interview-delta.md
+│   └── company-interview-guide.md
 └── assets/
     ├── interview-plan-template.csv
     ├── interview-guide-client.md
     ├── interview-guide-internal.md
-    └── interview-notes-template.md
+    ├── interview-notes-template.md
+    └── interview-guide-company-client.md
 ```
 
-上述目录为已发布 v0.1.0 的结构。开发候选还包含 `references/company-interview-guide.md` 与 `assets/interview-guide-company-client.md`；从候选分支安装时，必须按 `packaging/runtime-files.txt` 保留完整运行文件，不混用不同提交版本。
+v0.1.1 运行目录共11个文件。安装时保留完整目录，不混用不同版本文件；运行包不包含客户原件、评测输出或仓库维护材料。
 
 如果使用 ZIP 分发，统一命名为：
 
-`TalkTrace-v0.1.0.zip`
+`TalkTrace-v0.1.1-WorkBuddy.zip`
 
 在支持文件夹型 Skill / 自定义 Skill 的宿主环境中导入其中的 `TalkTrace/` 文件夹即可。
 
@@ -139,7 +141,7 @@ TalkTrace 本身不要求额外第三方 API、账号凭证、数据库或网络
 
 ## 能力边界
 
-TalkTrace v0.1.0 聚焦调研访谈工作流，不负责：
+TalkTrace v0.1.1 聚焦调研访谈工作流，不负责：
 
 - 建立持久项目数据库或跨会话长期记忆；
 - RAG / 向量数据库；

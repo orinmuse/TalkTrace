@@ -1,5 +1,7 @@
 # Company guide candidate change acceptance
 
+后续决定：Owner 于2026年10月21日明确要求定为 v0.1.1、封装并邮件交付。当前发布决定以 `releases/v0.1.1.md` 为准；下文保留当时的候选验收与 hold 历史，不再作为现行禁止分发的决定。WorkBuddy NOT TESTED 事实继续保留。
+
 Date: 2026-10-21
 Work Order: TT-COMPANY-GUIDE-20261021, PR #9.
 Decision owner: Skill Manager; engineering implementation and checks returned through technical-execution.

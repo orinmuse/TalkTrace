@@ -74,7 +74,7 @@ jobs:
           ]
           if runtime_files != expected_runtime:
               raise SystemExit(
-                  "TalkTrace runtime manifest drifted from the explicit eleven-file candidate contract:\n"
+                  "TalkTrace runtime manifest drifted from the explicit eleven-file v0.1.1 contract:\n"
                   + "\n".join(runtime_files)
               )
 
@@ -246,7 +246,7 @@ jobs:
       - name: Upload colleague-distributable runtime package
         uses: actions/upload-artifact@v4
         with:
-          name: TalkTrace-runtime-${{ github.sha }}
+          name: TalkTrace-v0.1.1-runtime-${{ github.sha }}
           path: dist/
           if-no-files-found: error
           retention-days: 30

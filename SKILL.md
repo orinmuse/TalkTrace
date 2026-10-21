@@ -5,6 +5,8 @@ description: 面向咨询顾问的轻量调研访谈 Skill。使用当前会话�
 
 # TalkTrace
 
+版本：v0.1.1。公司格式增强分发版；WorkBuddy 安装加载与现场使用仍需目标环境确认。
+
 ## 1. Mission
 
 TalkTrace 负责咨询项目的**调研访谈生命周期**，不是三个彼此孤立的文档生成器。
