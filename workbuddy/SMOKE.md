@@ -182,6 +182,7 @@ WorkBuddy target-runtime smoke 只有在以下条件都满足时才 PASS：
 8. 用户要求 Excel 时，真实文件能力被如实验证，不用文本表格冒充。
 
 Target-runtime PASS 只是 Engineering Evidence，不等于 TalkTrace Capability Accepted / Released。
+
 # S8｜Company guide profile candidate
 
 对公司格式候选，在干净安装目录按 `packaging/runtime-files.txt` 导入完整11文件运行包，确认公司 profile 和客户模板均可读取。不要使用 v0.1.0 的九文件旧包证明新候选加载通过。
