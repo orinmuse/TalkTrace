@@ -16,7 +16,7 @@
 
 **A. GitHub 直接读取（推荐）**：新项目按 Runner 首条提示词读取 `main` 中的 `SKILL.md` 和 `references/`，再按阶段打开本目录单个输入文件。没有 GitHub 权限/文件读取工具时必须报告 `BLOCKED: SOURCE_UNAVAILABLE`，不能假装加载成功。
 
-**B. 整包上传到新项目**：GitHub Actions `cold-start-test-kit` workflow 会生成可下载的 `TalkTrace-cold-start-runner-<sha>.zip`，其中只有 **11 个正式运行文件 + Runner 指南 + 分天虚构测试输入 + 记录模板**。不包含 Reviewer rubric、开发历史或测试期待答案。将整个 Runner 包作为新项目材料后，按 Runner 的本地文件路径分批运行；必须约束每一步不预读未来输入。
+**B. 整包上传到新项目**：GitHub Actions `cold-start-test-kit` workflow 会生成可下载的 `TalkTrace-cold-start-runner-<sha>.zip`，其中只有 **11 个正式运行文件 + Runner 指南 + 分天虚构测试输入 + 记录模板**。不包含 Reviewer rubric、开发历史或测试期待答案。解压或提供给项目后，可使用包内 `skill/SKILL.md` 与 `SOURCE-COMMIT.txt`，逐批读取对应输入。**注意：**某些项目上传机制会自动将所有输入文件一次性放入上下文；如果未来 D2/D3 已被测试执行者看到，不能把该轮认定为真正的时序隔离测试。强验证首选 A 的单文件逐批读取。
 
 ## 版本与边界
 

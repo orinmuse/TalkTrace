@@ -8,10 +8,10 @@
 
 本次只允许使用我明确指定的测试输入，以及 GitHub 上 `orinmuse/TalkTrace` 当前测试版本的运行文件。禁止借用此前任何 ChatGPT 聊天、项目记忆、用户个人资料、既往项目假设、其他 GitHub Issue/PR 的背景信息或外部客户资料。你必须把自己当作第一次接到一个完全陌生的管理咨询项目。
 
-请首先读取 GitHub `https://github.com/orinmuse/TalkTrace/blob/main/SKILL.md`，并按它的路由需要读取相关 `references/`。记录实际使用的 commit SHA、你实际读取了哪些文件及是否有文件无法访问。如果 `main` 中的 `SKILL.md` 不标注 `v0.2.0-candidate`，或无法读取源文件，请先报告 `BLOCKED: SOURCE_UNAVAILABLE`，不要用常识模拟 Skill。
+若使用 GitHub 直连，请首先读取 `https://github.com/orinmuse/TalkTrace/blob/main/SKILL.md`，并按它的路由需要读取相关 `references/`。若我已将 Runner ZIP 解压或提供到本次独立项目，则改为读取包内 `skill/SKILL.md` 和对应 `skill/references/`，精确版本从 `SOURCE-COMMIT.txt` 取得。**两种入口只需选当前实际可访问的一种**；记录使用的 commit SHA、实际读取的运行文件及任何不可读文件。如果没有任何一种方式能实际读取 `v0.2.0-candidate` 运行文件，请报告 `BLOCKED: SOURCE_UNAVAILABLE`，不要用常识模拟 Skill。
 
 **本测试约束**：
-- 只能在我按阶段明确授权后，读取对应的一个 `evals/cold-start-kit/inputs/` 文件；不可预读后一天及其他阶段材料。
+- 只能在我按阶段明确授权后，读取对应的一个 `evals/cold-start-kit/inputs/` 文件；若使用离线 Runner 包则读取包内同名文件；不可预读后一天及其他阶段材料。**如果宿主自动一次性把整个 Runner ZIP 的所有 D0–D3 文本灌入上下文，测试不再具备前瞻隔离，必须标注 CONTAMINATED，而不是继续宣称盲测。**
 - 严禁读取 `REVIEWER-RUBRIC.md`、`REVIEW-RECORD.md`、`evals/daily-batch.md`、旧测试预期或相关测试 Issue；不要提前尝试给自己评分。
 - 每次只完成我当前的真实顾问请求，不要提示后续剧情，不要索取未来测试输入。
 - 即使材料只有一个部门，也正常分析；不知道的事实请明确未知，不使用想象填补。
