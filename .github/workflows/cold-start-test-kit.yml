@@ -1,0 +1,73 @@
+name: cold-start-test-kit
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-independent-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate cold-start test kit isolation and stage files
+        shell: python
+        run: |
+          from pathlib import Path
+          runtime = [x.strip() for x in Path("packaging/runtime-files.txt").read_text(encoding="utf-8").splitlines() if x.strip() and not x.lstrip().startswith("#")]
+          runner = [x.strip() for x in Path("evals/cold-start-kit/runner-filelist.txt").read_text(encoding="utf-8").splitlines() if x.strip() and not x.lstrip().startswith("#")]
+          assert len(runtime) == 11 and len(set(runtime)) == 11, "Standalone runtime package count changed"
+          assert len(runner) == 8 and len(set(runner)) == 8, "Runner list differs from expected 8 files"
+          assert all(Path(p).is_file() for p in runtime + runner), "Package includes missing files"
+          assert all(p.startswith("evals/cold-start-kit/") for p in runner), "Runner path escape"
+          assert all("REVIEW" not in p.upper() and "RUBRIC" not in p.upper() for p in runner), "Reviewer leak"
+          assert {Path(x).name for x in runner if "/inputs/" in x} == {"D0.md","D1.md","D2.md","D3.md","N1.md","N2.md"}, "Stage coverage failure"
+          for p in runner:
+              content = Path(p).read_text(encoding="utf-8")
+              assert "REVIEWER-RUBRIC.md" not in p and "REVIEW-RECORD.md" not in p
+              assert "H1｜证据不越界" not in content and "探索性 PASS 规则" not in content, "Rubric contents leaked into runner file"
+          for name in ["REVIEWER-RUBRIC.md", "REVIEW-RECORD.md", "README.md"]:
+              assert Path("evals/cold-start-kit", name).is_file()
+          skill = Path("SKILL.md").read_text(encoding="utf-8")
+          assert "v0.2.0-candidate" in skill and "源—点—线—面—果—环" in skill
+          print("COLD-START-KIT CONTRACT: PASS")
+
+      - name: Create sealed-input runner ZIP (no reviewer material)
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf dist/cold-start
+          mkdir -p dist/cold-start/TalkTrace-Independent-Runner/skill
+          root="dist/cold-start/TalkTrace-Independent-Runner"
+          while IFS= read -r raw || [[ -n "$raw" ]]; do
+            file="${raw%%#*}"
+            file="$(printf '%s' "$file" | xargs)"
+            [[ -z "$file" ]] && continue
+            mkdir -p "$root/skill/$(dirname "$file")"
+            cp "$file" "$root/skill/$file"
+          done < packaging/runtime-files.txt
+          while IFS= read -r raw || [[ -n "$raw" ]]; do
+            file="${raw%%#*}"
+            file="$(printf '%s' "$file" | xargs)"
+            [[ -z "$file" ]] && continue
+            mkdir -p "$root/$(dirname "$file")"
+            cp "$file" "$root/$file"
+          done < evals/cold-start-kit/runner-filelist.txt
+          printf 'repository=orinmuse/TalkTrace\ncommit=%s\nvariant=v0.2.0-candidate\nrunner_material_only=true\n' "$GITHUB_SHA" > "$root/SOURCE-COMMIT.txt"
+          ! find "$root" -type f | grep -Ei '(REVIEWER-RUBRIC|REVIEW-RECORD|evals/daily-batch\.md)'
+          (
+            cd dist/cold-start
+            zip -qr "../TalkTrace-cold-start-runner-${GITHUB_SHA}.zip" TalkTrace-Independent-Runner
+          )
+          sha256sum "dist/TalkTrace-cold-start-runner-${GITHUB_SHA}.zip" > "dist/TalkTrace-cold-start-runner-${GITHUB_SHA}.sha256"
+          echo "RUNNER ZIP: PASS"
+
+      - name: Upload standalone runner test package
+        uses: actions/upload-artifact@v4
+        with:
+          name: TalkTrace-independent-runner-${{ github.sha }}
+          path: |
+            dist/TalkTrace-cold-start-runner-*.zip
+            dist/TalkTrace-cold-start-runner-*.sha256
+          if-no-files-found: error
+          retention-days: 90

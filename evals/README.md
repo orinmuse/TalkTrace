@@ -50,6 +50,10 @@ TalkTrace 的公开仓库测试分为两类：
 
 这是公开工程 regression case，不是最终 sealed acceptance case。
 
+### `adaptive-probing.md`
+
+验证回答驱动追问、主张类型与证据适配、来源独立性，以及 Source–Point–Line–Surface–Loop 在不同访谈阶段的恰当启用：现场以源/点/环为主，访谈后跨来源综合时才按需展开线/面。它同时检查多来源关系识别、有限议题画像、覆盖边界和后续行动选择。它是公开 targeted regression，只证明边界行为不回归，不替代真实项目 Outcome Eval 或 sealed acceptance。
+
 ### `premise-safety.md`
 
 针对 Work-mode behavioral verification 在 frozen HEAD `8c9ba8caaeeff4a418c65e69fd33d3d58f69091b` 暴露的弱语义前提问题，验证：
@@ -64,6 +68,10 @@ TalkTrace 的公开仓库测试分为两类：
 
 目的不是维护关键词黑名单，而是验证一般的 semantic premise preflight。
 
+### `daily-batch.md` — CR-03
+
+D0 资料预检、D1 单部门纪要、D2 新部门反向信息、D3 一线实际样本和历史缺失/重复资料两个负例。验证日终批次能修正旧理解并改变下一日行动，原始六层业务语义不再被误作信息分类。该公开 synthetic case 不证明真实项目成效或 WorkBuddy 目标环境通过。
+
 ## Final Capability Acceptance
 
 新版候选冻结后，由 Skill Manager 另行预注册未暴露的 held-out cases，并至少覆盖：
@@ -75,10 +83,23 @@ TalkTrace 的公开仓库测试分为两类：
 - source / uncertainty discipline；
 - insufficient-input degradation；
 - diagnosis boundary；
-- sequential interview delta / next-guide improvement。
+- sequential interview delta / next-guide improvement；
+- answer-conditioned probing；
+- claim-specific evidence fit；
+- source independence / shared-upstream detection；
+- risk-proportionate verification and stop conditions；
+- source → point extraction and provenance;
+- typed evidence-point relationships;
+- bounded issue-surface coverage / unknowns;
+- evidence-driven loop and next-source selection。
 
 正式 Outcome Eval 继续采用：
 
 > 同一模型 + 同一输入 + 同一自然语言请求，TalkTrace vs no-Skill baseline，隔离生成 + 盲评。
 
 不得因为新版 regression PASS 而降低 baseline comparison 门槛。
+
+
+### `cold-start-kit/` — zero-project-memory independent test package
+
+A reviewer-isolated, **new-project-ready** synthetic D0→D3 daily evidence intake suite with N1 missing-history and N2 duplicate-source cases. Runner prompt/case inputs are separated from the reviewer-only scoring rubric and receipt. See [cold-start-kit/README.md](cold-start-kit/README.md). CI packages the 11-file standalone Skill runtime plus *runner-only* materials into a downloadable ZIP; it does **not** execute the model or prove outcome quality.

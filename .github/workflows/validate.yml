@@ -35,6 +35,7 @@ jobs:
               Path("evals/cases.md"),
               Path("evals/cold-start.md"),
               Path("evals/sequential-context.md"),
+              Path("evals/adaptive-probing.md"),
               Path("evals/premise-safety.md"),
               Path("workbuddy/SMOKE.md"),
           ]
@@ -74,7 +75,7 @@ jobs:
           ]
           if runtime_files != expected_runtime:
               raise SystemExit(
-                  "TalkTrace runtime manifest drifted from the explicit eleven-file v0.1.1 contract:\n"
+                  "TalkTrace runtime manifest drifted from the approved eleven-file runtime contract:\n"
                   + "\n".join(runtime_files)
               )
 
@@ -106,6 +107,9 @@ jobs:
 
           if "是否存在/是否发生/是否普遍" not in skill:
               raise SystemExit("SKILL.md must propagate semantic premise-safety")
+          for required_phrase in ("源—点—线—面—果—环", "当前项目证据", "不建立持久台账", "日终批次", "次日行动", "任务穿透", "组织穿透", "反向核验", "不是资料出处", "真实工作过程与责任链"):
+              if required_phrase not in skill:
+                  raise SystemExit(f"SKILL.md missing evidence reasoning contract: {required_phrase}")
 
           for required_phrase in (
               "默认不要机械展示给用户",
@@ -125,6 +129,8 @@ jobs:
               "Quick Plan｜快速计划",
               "Scheduled Plan｜正式排程",
               "不伪造人员可用时间",
+              "已覆盖 / 部分覆盖 / 未覆盖",
+              "简单任务不做矩阵",
           ):
               if required_phrase not in plan:
                   raise SystemExit(f"Interview Plan missing product behavior: {required_phrase}")
@@ -140,6 +146,19 @@ jobs:
               "Causality gate",
               "Case-to-mechanism rule",
               "Premise preflight",
+              "Answer-conditioned probing",
+              "Evidence-fit",
+              "Source independence",
+              "Verification depth",
+              "Stop condition",
+              "源—点—线—面—果—环",
+              "业务起点",
+              "真实案例",
+              "真实流程与责任链",
+              "重复和复制条件",
+              "实际结果",
+              "客户自身的学习与改进",
+              "每日批次",
           ):
               if required_phrase not in guide:
                   raise SystemExit(f"Interview Guide missing semantic premise-safety mechanism: {required_phrase}")
@@ -155,6 +174,8 @@ jobs:
               "待核实事项",
               "对后续访谈的影响",
               "不应把纪要写成证据审计报告",
+              "Claim scope and source basis",
+              "制度文件支持制度规定",
           ):
               if required_phrase not in notes:
                   raise SystemExit(f"Interview Notes missing lightweight UX behavior: {required_phrase}")
@@ -174,9 +195,37 @@ jobs:
                   raise SystemExit(f"Premise-safety regression set missing assertion: {required_phrase}")
 
           delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
-          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文"):
+          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文", "Claim-level evidence record", "Evidence-fit and independence check", "Risk-proportionate verification and stop", "Evidence basis", "Scope", "Verification status", "源—点—线—面—果—环", "日终批次处理规则", "不能可靠比较昨天", "业务起因", "真实实践案例", "实际工作过程与责任链", "客户自身", "不是资料出处", "今日新增与修正"):
               if required_phrase not in delta:
                   raise SystemExit(f"Interview Delta missing required behavior: {required_phrase}")
+
+          daily = Path("evals/daily-batch.md").read_text(encoding="utf-8")
+          for required_phrase in ("D0｜", "D1｜", "D2｜", "D3｜", "N1｜旧资料不可读取", "N2｜同源重复", "源—点—线—面—果—环", "不能可靠比较昨天", "日终", "任务穿透", "实际结果"):
+              if required_phrase not in daily:
+                  raise SystemExit(f"Daily-batch regression missing boundary: {required_phrase}")
+
+          adaptive = Path("evals/adaptive-probing.md").read_text(encoding="utf-8")
+          for required_phrase in (
+              "Stage 2｜Generic answer",
+              "Stage 3｜Branch by answer",
+              "First-hand case",
+              "Second-hand account",
+              "Formal document supplied",
+              "来源独立性",
+              "单一案例",
+              "分开记录证据基础",
+              "制度设计可以得到支持",
+              "Stage 5｜Cross-source evidence review",
+              "共享上游信息",
+              "不能自动推断调整原因或效果",
+              "最终确认权/授权链",
+              "现场访谈阶段",
+              "访谈后跨来源核验",
+          ):
+              if required_phrase.lower() not in adaptive.lower():
+                  raise SystemExit(f"Adaptive-probing regression missing assertion: {required_phrase}")
+
+
 
           sequential = Path("evals/sequential-context.md").read_text(encoding="utf-8")
           for required_phrase in ("Stage 3｜Interview Delta", "Stage 4｜Refresh the next interview", "单一来源", "不预设吴川拍板"):
@@ -199,6 +248,11 @@ jobs:
           smoke = Path("workbuddy/SMOKE.md").read_text(encoding="utf-8")
           if "S6｜Sequential Interview Delta / Refresh" not in smoke:
               raise SystemExit("WorkBuddy smoke must include sequential-context validation")
+          if "S9｜Adaptive Probing / Evidence Fit" not in smoke:
+              raise SystemExit("WorkBuddy smoke must include adaptive probing validation")
+          for required_phrase in ("源—点—线—面—果—环", "共享上游", "Covered / Partially covered / Not covered", "S10｜Day-end batch", "旧资料不可读取", "Stage 5 访谈后/跨来源阶段"):
+              if required_phrase not in smoke:
+                  raise SystemExit(f"WorkBuddy smoke missing evidence synthesis check: {required_phrase}")
           for required_phrase in (
               "轻量纪要",
               "不默认展开完整竞争假设树",
@@ -246,7 +300,7 @@ jobs:
       - name: Upload colleague-distributable runtime package
         uses: actions/upload-artifact@v4
         with:
-          name: TalkTrace-v0.1.1-runtime-${{ github.sha }}
+          name: TalkTrace-candidate-runtime-${{ github.sha }}
           path: dist/
           if-no-files-found: error
           retention-days: 30

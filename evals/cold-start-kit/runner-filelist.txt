@@ -1,0 +1,9 @@
+# Independently executable runner-facing files only, repository relative
+evals/cold-start-kit/RUNNER-START.md
+evals/cold-start-kit/RUNNER-LOG.md
+evals/cold-start-kit/inputs/D0.md
+evals/cold-start-kit/inputs/D1.md
+evals/cold-start-kit/inputs/D2.md
+evals/cold-start-kit/inputs/D3.md
+evals/cold-start-kit/inputs/N1.md
+evals/cold-start-kit/inputs/N2.md
