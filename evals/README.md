@@ -52,7 +52,7 @@ TalkTrace 的公开仓库测试分为两类：
 
 ### `adaptive-probing.md`
 
-验证回答驱动追问、主张类型与证据适配、来源独立性和未知信息的正确转交。它是公开 targeted regression，只证明边界行为不回归，不替代真实项目 Outcome Eval 或 sealed acceptance。
+验证回答驱动追问、主张类型与证据适配、来源独立性，以及 Source–Point–Line–Surface–Loop 的多来源关系识别、有限议题画像、覆盖边界和后续行动选择。它是公开 targeted regression，只证明边界行为不回归，不替代真实项目 Outcome Eval 或 sealed acceptance。
 
 ### `premise-safety.md`
 
@@ -83,7 +83,11 @@ TalkTrace 的公开仓库测试分为两类：
 - answer-conditioned probing；
 - claim-specific evidence fit；
 - source independence / shared-upstream detection；
-- risk-proportionate verification and stop conditions。
+- risk-proportionate verification and stop conditions；
+- source → point extraction and provenance;
+- typed evidence-point relationships;
+- bounded issue-surface coverage / unknowns;
+- evidence-driven loop and next-source selection。
 
 正式 Outcome Eval 继续采用：
 

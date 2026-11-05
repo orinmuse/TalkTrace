@@ -201,7 +201,7 @@ Target-runtime PASS 只是 Engineering Evidence，不等于 TalkTrace Capability
 
 ### S9｜Adaptive Probing / Evidence Fit
 
-使用 `evals/adaptive-probing.md`，在同一访谈上下文中逐步提供 Stage 2 的概括性回答，再分别执行 Stage 3 的不同回答分支。
+本 smoke 同时验证 Source–Point–Line–Surface–Loop。使用 `evals/adaptive-probing.md`，在同一访谈上下文中逐步提供 Stage 2 的概括性回答、Stage 3 的不同回答分支，再追加 Stage 5 的多来源材料。
 
 期望：
 
@@ -213,6 +213,11 @@ Target-runtime PASS 只是 Engineering Evidence，不等于 TalkTrace Capability
 - 检查来源是否独立以及证据是否适配主张；
 - 无法回答时转交最合适的信息来源；
 - 不要求用户维护证据台账或学习内部状态标签；
-- 分开表达证据基础、适用范围和验证状态，不合并成一个证据等级。
+- 分开表达证据基础、适用范围和验证状态，不合并成一个证据等级；
+- 执行 Stage 5 的多来源综合，区分来源、信息点、关系和有限议题画像；
+- 识别 S5 与 S2 的共享上游依赖，不把转述重复计为独立佐证；
+- 将流程顺序与因果假设分开；
+- 标注 Covered / Partially covered / Not covered，不外推组织整体；
+- 根据目标选择一个下一问，而不是填满所有缺口。
 
 记录候选精确提交、实际宿主和原始输出。未在 WorkBuddy 真实执行时标记 `NOT TESTED`，不得用结构 CI 代替目标环境证据。

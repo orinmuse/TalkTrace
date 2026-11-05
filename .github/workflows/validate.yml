@@ -107,6 +107,9 @@ jobs:
 
           if "是否存在/是否发生/是否普遍" not in skill:
               raise SystemExit("SKILL.md must propagate semantic premise-safety")
+          for required_phrase in ("Source–Point–Line–Surface–Loop", "当前项目证据", "有边界的议题画像", "不建立持久台账"):
+              if required_phrase not in skill:
+                  raise SystemExit(f"SKILL.md missing evidence reasoning contract: {required_phrase}")
 
           for required_phrase in (
               "默认不要机械展示给用户",
@@ -146,6 +149,14 @@ jobs:
               "Source independence",
               "Verification depth",
               "Stop condition",
+              "Source–Point–Line–Surface–Loop",
+              "Source layer",
+              "Point layer",
+              "Line layer",
+              "Surface layer",
+              "Loop layer",
+              "Covered",
+              "Not covered",
           ):
               if required_phrase not in guide:
                   raise SystemExit(f"Interview Guide missing semantic premise-safety mechanism: {required_phrase}")
@@ -182,7 +193,7 @@ jobs:
                   raise SystemExit(f"Premise-safety regression set missing assertion: {required_phrase}")
 
           delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
-          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文", "Claim-level evidence record", "Evidence-fit and independence check", "Risk-proportionate verification and stop", "Evidence basis", "Scope", "Verification status"):
+          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文", "Claim-level evidence record", "Evidence-fit and independence check", "Risk-proportionate verification and stop", "Evidence basis", "Scope", "Verification status", "Source–Point–Line–Surface–Loop", "Source layer", "Point layer", "Line layer", "Surface layer", "Loop layer", "Covered", "Partially covered", "Not covered"):
               if required_phrase not in delta:
                   raise SystemExit(f"Interview Delta missing required behavior: {required_phrase}")
 
@@ -197,6 +208,10 @@ jobs:
               "单一案例",
               "分开记录证据基础",
               "制度设计可以得到支持",
+              "Stage 5｜Source–Point–Line–Surface–Loop",
+              "共享上游信息",
+              "不能自动推断调整原因或效果",
+              "最终确认权/授权链",
           ):
               if required_phrase.lower() not in adaptive.lower():
                   raise SystemExit(f"Adaptive-probing regression missing assertion: {required_phrase}")
@@ -226,6 +241,9 @@ jobs:
               raise SystemExit("WorkBuddy smoke must include sequential-context validation")
           if "S9｜Adaptive Probing / Evidence Fit" not in smoke:
               raise SystemExit("WorkBuddy smoke must include adaptive probing validation")
+          for required_phrase in ("Source–Point–Line–Surface–Loop", "共享上游", "Covered / Partially covered / Not covered"):
+              if required_phrase not in smoke:
+                  raise SystemExit(f"WorkBuddy smoke missing evidence synthesis check: {required_phrase}")
           for required_phrase in (
               "轻量纪要",
               "不默认展开完整竞争假设树",
