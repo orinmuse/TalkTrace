@@ -178,3 +178,8 @@ TalkTrace 可以帮助识别问题线索、冲突、候选假设和待验证事�
 ## License
 
 See [LICENSE](LICENSE).
+
+
+## 冷启动独立测试（v0.2.0-candidate）
+
+当前开发候选的完整、可在无项目记忆的新项目中使用的虚构逐日测试包已收录于 [`evals/cold-start-kit/`](evals/cold-start-kit/README.md)。请按 Runner / Reviewer 隔离顺序使用；可用 GitHub Actions `cold-start-test-kit` 下载仅包含运行文件和逐日测试输入的 ZIP。代码集成与独立行为验收分开，正式分发仍为 v0.1.1，不应把测试包或 CI 当作 v0.2.0 已发布的依据。

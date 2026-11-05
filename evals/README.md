@@ -98,3 +98,8 @@ D0 资料预检、D1 单部门纪要、D2 新部门反向信息、D3 一线实�
 > 同一模型 + 同一输入 + 同一自然语言请求，TalkTrace vs no-Skill baseline，隔离生成 + 盲评。
 
 不得因为新版 regression PASS 而降低 baseline comparison 门槛。
+
+
+### `cold-start-kit/` — zero-project-memory independent test package
+
+A reviewer-isolated, **new-project-ready** synthetic D0→D3 daily evidence intake suite with N1 missing-history and N2 duplicate-source cases. Runner prompt/case inputs are separated from the reviewer-only scoring rubric and receipt. See [cold-start-kit/README.md](cold-start-kit/README.md). CI packages the 11-file standalone Skill runtime plus *runner-only* materials into a downloadable ZIP; it does **not** execute the model or prove outcome quality.
