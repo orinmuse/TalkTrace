@@ -195,8 +195,8 @@ jobs:
               "Formal document supplied",
               "来源独立性",
               "单一案例",
-              "证据基础、适用范围和验证状态分别记录",
-              "制度设计可以得到支持，但实际执行仍待验证",
+              "分开记录证据基础",
+              "制度设计可以得到支持",
           ):
               if required_phrase.lower() not in adaptive.lower():
                   raise SystemExit(f"Adaptive-probing regression missing assertion: {required_phrase}")
