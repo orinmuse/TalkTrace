@@ -220,7 +220,7 @@ jobs:
               "不能自动推断调整原因或效果",
               "最终确认权/授权链",
               "现场访谈阶段",
-              "访谈后跨来源综合",
+              "访谈后跨来源核验",
           ):
               if required_phrase.lower() not in adaptive.lower():
                   raise SystemExit(f"Adaptive-probing regression missing assertion: {required_phrase}")
