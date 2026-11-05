@@ -75,7 +75,7 @@ jobs:
           ]
           if runtime_files != expected_runtime:
               raise SystemExit(
-                  "TalkTrace runtime manifest drifted from the explicit eleven-file v0.1.1 contract:\n"
+                  "TalkTrace runtime manifest drifted from the approved eleven-file runtime contract:\n"
                   + "\n".join(runtime_files)
               )
 
@@ -182,7 +182,7 @@ jobs:
                   raise SystemExit(f"Premise-safety regression set missing assertion: {required_phrase}")
 
           delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
-          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文", "Claim-level evidence status", "Evidence-fit and independence check", "Risk-proportionate verification and stop"):
+          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文", "Claim-level evidence record", "Evidence-fit and independence check", "Risk-proportionate verification and stop", "Evidence basis", "Scope", "Verification status"):
               if required_phrase not in delta:
                   raise SystemExit(f"Interview Delta missing required behavior: {required_phrase}")
 
@@ -195,6 +195,8 @@ jobs:
               "Formal document supplied",
               "来源独立性",
               "单一案例",
+              "证据基础、适用范围和验证状态分别记录",
+              "制度设计可以得到支持，但实际执行仍待验证",
           ):
               if required_phrase.lower() not in adaptive.lower():
                   raise SystemExit(f"Adaptive-probing regression missing assertion: {required_phrase}")
@@ -271,7 +273,7 @@ jobs:
       - name: Upload colleague-distributable runtime package
         uses: actions/upload-artifact@v4
         with:
-          name: TalkTrace-v0.1.1-runtime-${{ github.sha }}
+          name: TalkTrace-candidate-runtime-${{ github.sha }}
           path: dist/
           if-no-files-found: error
           retention-days: 30
