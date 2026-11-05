@@ -50,6 +50,10 @@ TalkTrace 的公开仓库测试分为两类：
 
 这是公开工程 regression case，不是最终 sealed acceptance case。
 
+### `adaptive-probing.md`
+
+验证回答驱动追问、主张类型与证据适配、来源独立性和未知信息的正确转交。它是公开 targeted regression，只证明边界行为不回归，不替代真实项目 Outcome Eval 或 sealed acceptance。
+
 ### `premise-safety.md`
 
 针对 Work-mode behavioral verification 在 frozen HEAD `8c9ba8caaeeff4a418c65e69fd33d3d58f69091b` 暴露的弱语义前提问题，验证：
@@ -75,7 +79,11 @@ TalkTrace 的公开仓库测试分为两类：
 - source / uncertainty discipline；
 - insufficient-input degradation；
 - diagnosis boundary；
-- sequential interview delta / next-guide improvement。
+- sequential interview delta / next-guide improvement；
+- answer-conditioned probing；
+- claim-specific evidence fit；
+- source independence / shared-upstream detection；
+- risk-proportionate verification and stop conditions。
 
 正式 Outcome Eval 继续采用：
 

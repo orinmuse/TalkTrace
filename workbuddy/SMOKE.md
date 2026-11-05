@@ -168,6 +168,22 @@
 
 **S6 是新版 v0.1 的核心 smoke。** 如果无法在同一当前上下文中利用前序访谈改进下一场提纲，记录 FAIL 或明确 runtime context limitation；不得通过增加持久数据库/RAG/Agent 来静默修复。
 
+### S9｜Adaptive Probing / Evidence Fit
+
+使用 `evals/adaptive-probing.md`，在同一访谈上下文中逐步提供 Stage 2 的概括性回答，再分别执行 Stage 3 的不同回答分支。
+
+期望：
+
+- 概括性回答触发具体案例追问，而不是泛泛继续；
+- 亲历案例只补当前缺失的信息，不机械列出全部追问；
+- 转述、不知道、制度文件分别触发不同的下一步；
+- 不把单一案例推成普遍机制，不把制度规定推成实际执行；
+- 检查来源是否独立以及证据是否适配主张；
+- 无法回答时转交最合适的信息来源；
+- 不要求用户维护证据台账或学习内部状态标签。
+
+记录候选精确提交、实际宿主和原始输出。未在 WorkBuddy 真实执行时标记 `NOT TESTED`，不得用结构 CI 代替目标环境证据。
+
 ## 4. Pass condition
 
 WorkBuddy target-runtime smoke 只有在以下条件都满足时才 PASS：

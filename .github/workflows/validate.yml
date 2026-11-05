@@ -35,6 +35,7 @@ jobs:
               Path("evals/cases.md"),
               Path("evals/cold-start.md"),
               Path("evals/sequential-context.md"),
+              Path("evals/adaptive-probing.md"),
               Path("evals/premise-safety.md"),
               Path("workbuddy/SMOKE.md"),
           ]
@@ -140,6 +141,11 @@ jobs:
               "Causality gate",
               "Case-to-mechanism rule",
               "Premise preflight",
+              "Answer-conditioned probing",
+              "Evidence-fit",
+              "Source independence",
+              "Verification depth",
+              "Stop condition",
           ):
               if required_phrase not in guide:
                   raise SystemExit(f"Interview Guide missing semantic premise-safety mechanism: {required_phrase}")
@@ -155,6 +161,8 @@ jobs:
               "待核实事项",
               "对后续访谈的影响",
               "不应把纪要写成证据审计报告",
+              "Claim scope and source basis",
+              "制度文件支持制度规定",
           ):
               if required_phrase not in notes:
                   raise SystemExit(f"Interview Notes missing lightweight UX behavior: {required_phrase}")
@@ -174,9 +182,24 @@ jobs:
                   raise SystemExit(f"Premise-safety regression set missing assertion: {required_phrase}")
 
           delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
-          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文"):
+          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文", "Claim-level evidence status", "Evidence-fit and independence check", "Risk-proportionate verification and stop"):
               if required_phrase not in delta:
                   raise SystemExit(f"Interview Delta missing required behavior: {required_phrase}")
+
+          adaptive = Path("evals/adaptive-probing.md").read_text(encoding="utf-8")
+          for required_phrase in (
+              "Stage 2｜Generic answer",
+              "Stage 3｜Branch by answer",
+              "First-hand case",
+              "Second-hand account",
+              "Formal document supplied",
+              "source independence",
+              "single case",
+          ):
+              if required_phrase.lower() not in adaptive.lower():
+                  raise SystemExit(f"Adaptive-probing regression missing assertion: {required_phrase}")
+
+
 
           sequential = Path("evals/sequential-context.md").read_text(encoding="utf-8")
           for required_phrase in ("Stage 3｜Interview Delta", "Stage 4｜Refresh the next interview", "单一来源", "不预设吴川拍板"):
@@ -199,6 +222,8 @@ jobs:
           smoke = Path("workbuddy/SMOKE.md").read_text(encoding="utf-8")
           if "S6｜Sequential Interview Delta / Refresh" not in smoke:
               raise SystemExit("WorkBuddy smoke must include sequential-context validation")
+          if "S9｜Adaptive Probing / Evidence Fit" not in smoke:
+              raise SystemExit("WorkBuddy smoke must include adaptive probing validation")
           for required_phrase in (
               "轻量纪要",
               "不默认展开完整竞争假设树",
