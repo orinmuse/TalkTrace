@@ -52,7 +52,7 @@ TalkTrace 的公开仓库测试分为两类：
 
 ### `adaptive-probing.md`
 
-验证回答驱动追问、主张类型与证据适配、来源独立性，以及 Source–Point–Line–Surface–Loop 的多来源关系识别、有限议题画像、覆盖边界和后续行动选择。它是公开 targeted regression，只证明边界行为不回归，不替代真实项目 Outcome Eval 或 sealed acceptance。
+验证回答驱动追问、主张类型与证据适配、来源独立性，以及 Source–Point–Line–Surface–Loop 在不同访谈阶段的恰当启用：现场以源/点/环为主，访谈后跨来源综合时才按需展开线/面。它同时检查多来源关系识别、有限议题画像、覆盖边界和后续行动选择。它是公开 targeted regression，只证明边界行为不回归，不替代真实项目 Outcome Eval 或 sealed acceptance。
 
 ### `premise-safety.md`
 
