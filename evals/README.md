@@ -68,6 +68,10 @@ TalkTrace 的公开仓库测试分为两类：
 
 目的不是维护关键词黑名单，而是验证一般的 semantic premise preflight。
 
+### `daily-batch.md` — CR-03
+
+D0 资料预检、D1 单部门纪要、D2 新部门反向信息、D3 一线实际样本和历史缺失/重复资料两个负例。验证日终批次能修正旧理解并改变下一日行动，原始六层业务语义不再被误作信息分类。该公开 synthetic case 不证明真实项目成效或 WorkBuddy 目标环境通过。
+
 ## Final Capability Acceptance
 
 新版候选冻结后，由 Skill Manager 另行预注册未暴露的 held-out cases，并至少覆盖：
