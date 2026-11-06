@@ -68,6 +68,12 @@ TalkTrace 的公开仓库测试分为两类：
 
 目的不是维护关键词黑名单，而是验证一般的 semantic premise preflight。
 
+### `as-is-mapping.md` — CR-05
+
+验证 TalkTrace 是否能在管理体系现状摸底（薪酬绩效、组织/岗位/职级）中先建立项目范围内的主题地图，区分正式设计、实际运行和主体理解/体验，并在每日批次后同时更新主题覆盖与重要主张的证据状态。包含“仅描述现状、不提前诊断”的边界，以及旧业务实践穿透的回归要求。
+
+该文件是公开 synthetic targeted regression，不能替代冻结候选后的独立 held-out Capability Acceptance。
+
 ### `daily-batch.md` — CR-03
 
 D0 资料预检、D1 单部门纪要、D2 新部门反向信息、D3 一线实际样本和历史缺失/重复资料两个负例。验证日终批次能修正旧理解并改变下一日行动，原始六层业务语义不再被误作信息分类。该公开 synthetic case 不证明真实项目成效或 WorkBuddy 目标环境通过。
