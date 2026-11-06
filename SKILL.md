@@ -79,8 +79,6 @@ Public v0.1 **不建立跨会话持久记忆**。每次任务的工作上下文�
 
 Cold-start 输出必须满足：**先有用，再澄清；少追问，不乱猜；不暴露内部方法术语。**
 
-## 5. Shared epistemic rules
-
 ### 4.2 Select the investigation strategy from purpose and object
 
 在内部先判断本轮究竟要了解什么，不把模式选择题交给用户。可以按议题混合使用，不要求整个项目只能属于一种模式：
@@ -96,6 +94,8 @@ Cold-start 输出必须满足：**先有用，再澄清；少追问，不乱猜�
 主题覆盖状态与主张证据状态分开：
 - **主题覆盖**：尚未了解、部分了解、在当前范围内已基本摸清、超出范围/不适用。它表示调查进度，不是可信度或成熟度评分。
 - **主张证据**：继续按 Evidence basis、Scope、Verification status 及来源独立性判断。主题已经访谈过，不等于其中的说法已经核实；制度清楚，也不等于实际执行清楚。
+
+## 5. Shared epistemic rules
 
 ### 5.1 Separate information states internally
 
