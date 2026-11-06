@@ -198,6 +198,3 @@ See [LICENSE](LICENSE).
 v0.3.0-candidate 的 Owner 裁决为 **ACCEPT WITH CONDITIONS / OWNER-DIRECTED CLOSE**。工程结构校验与上下文恢复回归通过；独立 Practice Tracing、As-Is-only 负例、WorkBuddy S11 和真实项目现场效果未验证，并按 Owner 决定不再追测。详细证据边界见 [v0.3.0-candidate 候选封装记录](releases/v0.3.0-candidate.md)。
 
 当前正式分发基线仍为 v0.1.1；v0.2.0-candidate 与 v0.3.0-candidate 均保持候选身份。
-
-
-既有 v0.2.0-candidate 的无项目记忆逐日测试包已收录于 [`evals/cold-start-kit/`](evals/cold-start-kit/README.md)。CR-05 新增管理体系现状摸底公开回归 [`evals/as-is-mapping.md`](evals/as-is-mapping.md)，用于检查调查方法适配、主题覆盖和跨日更新。公开回归与独立 held-out 行为验收分开；正式分发仍为 v0.1.1，v0.3.0-candidate 尚未发布。
