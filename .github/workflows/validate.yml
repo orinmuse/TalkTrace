@@ -267,7 +267,7 @@ jobs:
 
           runner_start = Path("evals/as-is-cold-start-kit/RUNNER-START.md").read_text(encoding="utf-8")
           reviewer = Path("evals/as-is-cold-start-kit/REVIEWER-RUBRIC.md").read_text(encoding="utf-8")
-          for required_phrase in ("RUNNER-START", "不得读取", "D0", "D1", "D2", "ORG-GRADE"):
+          for required_phrase in ("RUNNER-START", "不读取", "D0", "D1", "D2", "ORG-GRADE"):
               if required_phrase.lower() not in runner_start.lower():
                   raise SystemExit(f"As-Is runner instructions missing: {required_phrase}")
           if "do not expose" not in reviewer.lower() and "do not read" not in reviewer.lower():
