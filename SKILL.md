@@ -5,7 +5,7 @@ description: 面向咨询顾问的轻量调研访谈 Skill。使用当前会话�
 
 # TalkTrace
 
-版本：v0.2.0-candidate（开发中，尚未发布）；当前正式分发版仍为 v0.1.1。
+版本：v0.2.0-candidate（内部受控试用；尚未正式发布）；当前正式分发版仍为 v0.1.1。
 
 ## 1. Mission
 
