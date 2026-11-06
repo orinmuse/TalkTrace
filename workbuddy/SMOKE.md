@@ -219,7 +219,7 @@ Target-runtime PASS 只是 Engineering Evidence，不等于 TalkTrace Capability
 - 默认用户输出保持简洁，除非用户明确要求，不展示完整五层内部结构；
 - 识别 S5 与 S2 的共享上游依赖，不把转述重复计为独立佐证；
 - 将流程顺序与因果假设分开；
-- 标注 Covered / Partially covered / Not covered，不外推组织整体；
+- 对主题地图标注 Not explored / Partially understood / Sufficiently mapped / Out of scope；与主张的证据验证状态分开，不外推组织整体；
 - 根据目标选择一个下一问，而不是填满所有缺口。
 
 记录候选精确提交、实际宿主和原始输出。未在 WorkBuddy 真实执行时标记 `NOT TESTED`，不得用结构 CI 代替目标环境证据。
@@ -241,3 +241,26 @@ Target-runtime PASS 只是 Engineering Evidence，不等于 TalkTrace Capability
 - 默认输出今日新增与修正、仍待核清、次日行动，旧提纲/纪要/前提安全不回归。
 
 记录具体候选提交、真实宿主、完整可访问文件范围、原始模型输出与顾问负担。未经 WorkBuddy 实际执行标记 `NOT TESTED`，不可用结构 CI 代替。
+
+---
+
+### S11｜As-Is management-system mapping (CR-05)
+
+本 smoke 验证 TalkTrace 面对“了解现行薪酬绩效体系/组织岗位职级体系”的任务时，是否先识别调查对象与范围、建立项目化主题地图，再分配角色信息任务；不得默认用源—点—线—面—果—环组织所有访谈。
+
+输入至少包括：
+- 一项明确要求“先了解现状，不诊断、不设计”的管理体系调查任务；
+- 少量正式制度/组织资料，内容不完整；
+- 至少两类不同信息角色（如 HR、财务、业务负责人或员工）；
+- 一次单部门日终批次与一次新角色补充材料。
+
+PASS 观察点：
+- 先区分正式设计、实际运行、主体理解/体验；
+- 主题地图随项目范围生成，不套固定行业清单；
+- 不预设工资组成、奖金类型、强制分布、审批环节、岗位序列或数据系统；
+- 每个受访角色承担不同、材料支持的信息任务；
+- 新批次更新主题覆盖与重要主张证据状态，二者分开；
+- 不因资料缺口直接诊断制度失效或提出改革方案；
+- 顾问仍只需按现有方式每日集中上传，不增加额外台账/表单。
+
+Practice-tracing regression remains covered by S10 and `evals/daily-batch.md`; S11 does not replace it.
