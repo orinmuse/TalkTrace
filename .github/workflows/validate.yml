@@ -45,6 +45,8 @@ jobs:
               Path("evals/as-is-cold-start-kit/inputs/D2.md"),
               Path("evals/as-is-cold-start-kit/inputs/ORG-GRADE.md"),
               Path("evals/as-is-cold-start-kit/REVIEWER-RUBRIC.md"),
+              Path("evals/as-is-cold-start-kit/RUNNER-PRACTICE-START.md"),
+              Path("evals/as-is-cold-start-kit/REVIEWER-PRACTICE-RUBRIC.md"),
               Path("workbuddy/SMOKE.md"),
           ]
 
@@ -272,6 +274,15 @@ jobs:
                   raise SystemExit(f"As-Is runner instructions missing: {required_phrase}")
           if "do not expose" not in reviewer.lower() and "do not read" not in reviewer.lower():
               raise SystemExit("As-Is reviewer rubric must remain reviewer-only")
+
+          practice_runner = Path("evals/as-is-cold-start-kit/RUNNER-PRACTICE-START.md").read_text(encoding="utf-8")
+          practice_reviewer = Path("evals/as-is-cold-start-kit/REVIEWER-PRACTICE-RUBRIC.md").read_text(encoding="utf-8")
+          for required_phrase in ("v0.3.0 Practice-Tracing Regression", "d4b0cd4a28b12277932911a50f025e16da4181dc", "D0", "D1", "D2", "D3", "N1", "N2"):
+              if required_phrase not in practice_runner:
+                  raise SystemExit(f"Practice-tracing runner missing: {required_phrase}")
+          for required_phrase in ("Method selection", "Evidence and premise safety", "Daily-batch adaptation", "Negative cases", "Candidate-specific regression"):
+              if required_phrase not in practice_reviewer:
+                  raise SystemExit(f"Practice-tracing reviewer rubric missing: {required_phrase}")
 
           smoke = Path("workbuddy/SMOKE.md").read_text(encoding="utf-8")
           if "S6｜Sequential Interview Delta / Refresh" not in smoke:
