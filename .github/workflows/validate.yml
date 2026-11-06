@@ -38,6 +38,13 @@ jobs:
               Path("evals/adaptive-probing.md"),
               Path("evals/premise-safety.md"),
               Path("evals/as-is-mapping.md"),
+              Path("evals/as-is-cold-start-kit/README.md"),
+              Path("evals/as-is-cold-start-kit/RUNNER-START.md"),
+              Path("evals/as-is-cold-start-kit/inputs/D0.md"),
+              Path("evals/as-is-cold-start-kit/inputs/D1.md"),
+              Path("evals/as-is-cold-start-kit/inputs/D2.md"),
+              Path("evals/as-is-cold-start-kit/inputs/ORG-GRADE.md"),
+              Path("evals/as-is-cold-start-kit/REVIEWER-RUBRIC.md"),
               Path("workbuddy/SMOKE.md"),
           ]
 
@@ -257,6 +264,14 @@ jobs:
           for required_phrase in ("A1｜D0 compensation and performance management As-Is survey", "A2｜D1 HR batch → D2 Finance batch", "A3｜Transfer test", "A4｜Boundary test", "formal design", "actual operation", "topic coverage"):
               if required_phrase.lower() not in as_is.lower():
                   raise SystemExit(f"As-Is mapping regression missing assertion: {required_phrase}")
+
+          runner_start = Path("evals/as-is-cold-start-kit/RUNNER-START.md").read_text(encoding="utf-8")
+          reviewer = Path("evals/as-is-cold-start-kit/REVIEWER-RUBRIC.md").read_text(encoding="utf-8")
+          for required_phrase in ("RUNNER-START", "do not read", "D0", "D1", "D2", "ORG-GRADE"):
+              if required_phrase.lower() not in runner_start.lower():
+                  raise SystemExit(f"As-Is runner instructions missing: {required_phrase}")
+          if "do not expose" not in reviewer.lower() and "do not read" not in reviewer.lower():
+              raise SystemExit("As-Is reviewer rubric must remain reviewer-only")
 
           smoke = Path("workbuddy/SMOKE.md").read_text(encoding="utf-8")
           if "S6｜Sequential Interview Delta / Refresh" not in smoke:
