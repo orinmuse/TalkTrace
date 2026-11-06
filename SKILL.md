@@ -97,7 +97,7 @@ Cold-start 输出必须满足：**先有用，再澄清；少追问，不乱猜�
 - **主题覆盖**：尚未了解、部分了解、在当前范围内已基本摸清、超出范围/不适用。它表示调查进度，不是可信度或成熟度评分。
 - **主张证据**：继续按 Evidence basis、Scope、Verification status 及来源独立性判断。主题已经访谈过，不等于其中的说法已经核实；制度清楚，也不等于实际执行清楚。
 
-### 5.1 Separate information states internally### 5.1 Separate information states internally
+### 5.1 Separate information states internally
 
 根据任务需要在内部区分以下状态：
 
