@@ -72,7 +72,7 @@ TalkTrace 的公开仓库测试分为两类：
 
 验证 TalkTrace 是否能在管理体系现状摸底（薪酬绩效、组织/岗位/职级）中先建立项目范围内的主题地图，区分正式设计、实际运行和主体理解/体验，并在每日批次后同时更新主题覆盖与重要主张的证据状态。包含“仅描述现状、不提前诊断”的边界，以及旧业务实践穿透的回归要求。
 
-该文件是公开 synthetic targeted regression，不能替代冻结候选后的独立 held-out Capability Acceptance。需要在无项目记忆的独立会话中运行时，使用 `evals/as-is-cold-start-kit/`；其中 Runner 输入与 Reviewer Rubric 分开，Runner 不得读取评分文件。
+该文件是公开 synthetic targeted regression，不能替代冻结候选后的独立 held-out Capability Acceptance。需要在无项目记忆的独立会话中运行时，使用 `evals/as-is-cold-start-kit/`；其中 As-Is 与 practice-tracing 两条 Runner 路径均与各自 Reviewer Rubric 分开，Runner 不得读取评分文件。
 
 ### `daily-batch.md` — CR-03
 
