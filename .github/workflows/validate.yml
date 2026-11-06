@@ -37,6 +37,7 @@ jobs:
               Path("evals/sequential-context.md"),
               Path("evals/adaptive-probing.md"),
               Path("evals/premise-safety.md"),
+              Path("evals/as-is-mapping.md"),
               Path("workbuddy/SMOKE.md"),
           ]
 
@@ -107,7 +108,7 @@ jobs:
 
           if "是否存在/是否发生/是否普遍" not in skill:
               raise SystemExit("SKILL.md must propagate semantic premise-safety")
-          for required_phrase in ("源—点—线—面—果—环", "当前项目证据", "不建立持久台账", "日终批次", "次日行动", "任务穿透", "组织穿透", "反向核验", "不是资料出处", "真实工作过程与责任链"):
+          for required_phrase in ("源—点—线—面—果—环", "当前上下文", "不创建或维护持久项目状态文件", "日终批次", "次日行动", "任务穿透", "组织穿透", "反向核验", "不是资料出处", "真实工作过程与责任链", "体系现状摸底", "主题覆盖与主张证据状态分开"):
               if required_phrase not in skill:
                   raise SystemExit(f"SKILL.md missing evidence reasoning contract: {required_phrase}")
 
@@ -125,12 +126,14 @@ jobs:
 
           plan = Path("references/interview-plan.md").read_text(encoding="utf-8")
           for required_phrase in (
-              "重点验证/信息缺口",
+              "重点了解/补充/核实的信息缺口",
               "Quick Plan｜快速计划",
               "Scheduled Plan｜正式排程",
               "不伪造人员可用时间",
-              "已覆盖 / 部分覆盖 / 未覆盖",
-              "简单任务不做矩阵",
+              "尚未了解",
+              "当前范围内已基本摸清",
+              "没有必要时不建立表格",
+              "主题覆盖状态与主张证据验证状态分开",
           ):
               if required_phrase not in plan:
                   raise SystemExit(f"Interview Plan missing product behavior: {required_phrase}")
@@ -151,6 +154,11 @@ jobs:
               "Source independence",
               "Verification depth",
               "Stop condition",
+              "As-Is mapping",
+              "正式设计",
+              "实际运行",
+              "理解与体验",
+              "主题覆盖状态",
               "源—点—线—面—果—环",
               "业务起点",
               "真实案例",
@@ -195,7 +203,7 @@ jobs:
                   raise SystemExit(f"Premise-safety regression set missing assertion: {required_phrase}")
 
           delta = Path("references/interview-delta.md").read_text(encoding="utf-8")
-          for required_phrase in ("新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文", "Claim-level evidence record", "Evidence-fit and independence check", "Risk-proportionate verification and stop", "Evidence basis", "Scope", "Verification status", "源—点—线—面—果—环", "日终批次处理规则", "不能可靠比较昨天", "业务起因", "真实实践案例", "实际工作过程与责任链", "客户自身", "不是资料出处", "今日新增与修正"):
+          for required_phrase in ("Topic coverage", "主题覆盖状态", "正式设计", "实际运行", "新增信息", "已回答的问题", "冲突", "Refresh subsequent interviews", "当前上下文", "Claim-level evidence record", "Evidence-fit and independence check", "Risk-proportionate verification and stop", "Evidence basis", "Scope", "Verification status", "源—点—线—面—果—环", "日终批次处理规则", "不能可靠比较昨天", "业务起因", "真实实践案例", "实际工作过程与责任链", "客户自身", "不是资料出处", "今日新增与修正"):
               if required_phrase not in delta:
                   raise SystemExit(f"Interview Delta missing required behavior: {required_phrase}")
 
@@ -245,12 +253,17 @@ jobs:
               if required_phrase not in cold_start:
                   raise SystemExit(f"Cold-start regression set missing assertion: {required_phrase}")
 
+          as_is = Path("evals/as-is-mapping.md").read_text(encoding="utf-8")
+          for required_phrase in ("A1｜D0 compensation and performance management As-Is survey", "A2｜D1 HR batch → D2 Finance batch", "A3｜Transfer test", "A4｜Boundary test", "formal design", "actual operation", "topic coverage"):
+              if required_phrase.lower() not in as_is.lower():
+                  raise SystemExit(f"As-Is mapping regression missing assertion: {required_phrase}")
+
           smoke = Path("workbuddy/SMOKE.md").read_text(encoding="utf-8")
           if "S6｜Sequential Interview Delta / Refresh" not in smoke:
               raise SystemExit("WorkBuddy smoke must include sequential-context validation")
           if "S9｜Adaptive Probing / Evidence Fit" not in smoke:
               raise SystemExit("WorkBuddy smoke must include adaptive probing validation")
-          for required_phrase in ("源—点—线—面—果—环", "共享上游", "Covered / Partially covered / Not covered", "S10｜Day-end batch", "旧资料不可读取", "Stage 5 访谈后/跨来源阶段"):
+          for required_phrase in ("源—点—线—面—果—环", "共享上游", "Not explored / Partially understood / Sufficiently mapped / Out of scope", "S10｜Day-end batch", "S11｜As-Is management-system mapping",  "旧资料不可读取", "Stage 5 访谈后/跨来源阶段"):
               if required_phrase not in smoke:
                   raise SystemExit(f"WorkBuddy smoke missing evidence synthesis check: {required_phrase}")
           for required_phrase in (
