@@ -8,13 +8,13 @@ TalkTrace 是一个面向管理咨询顾问的调研访谈 Skill。
 
 适合管理体系现状摸底、组织与职能调研、战略访谈、具体业务实践核验等需要连续访谈和交叉验证的咨询场景。TalkTrace 根据调查目标和对象选择方法：管理体系现状调查先建立项目范围内的主题地图；具体业务实践再按需开展案例与流程穿透。
 
-当前正式分发版本：**v0.1.1**（WorkBuddy 同事试用包）  
+当前正式分发基线：**v0.1.1**（WorkBuddy 同事试用包）  
 既有候选基线：**v0.2.0-candidate**（已完成 D0–D3、N1、N2 探索性行为评审，批准内部受控试用分发；不构成正式 v0.2.0 发布或 active 晋级）  
-方法重构候选：**v0.3.0-candidate**（CR-05 独立开发分支；管理体系现状摸底方法正在重构，尚未完成验收或发布，不可替代既有安装包）
+方法重构候选：**v0.3.0-candidate**（CR-05 已完成 Owner 条件接受与候选封装；仅供内部受控试用，不构成正式版本发布或 active / stable 晋级）
 
 本版增加按需启用的公司访谈提纲格式、项目类型选题和角色差异规则。已完成结构验证与云端独立定向复核；WorkBuddy 本版安装加载及真实项目现场效果仍待验证，不代表对该目标环境已实测通过。
 
-版本说明见 [v0.1.1](releases/v0.1.1.md) 与 [v0.2.0-candidate 候选分发记录](releases/v0.2.0-candidate.md)。历史 [v0.1.0 Release](https://github.com/orinmuse/TalkTrace/releases/tag/v0.1.0) 保留不变。
+版本说明见 [v0.1.1](releases/v0.1.1.md)、[v0.2.0-candidate 候选分发记录](releases/v0.2.0-candidate.md) 与 [v0.3.0-candidate 候选封装记录](releases/v0.3.0-candidate.md)。历史 [v0.1.0 Release](https://github.com/orinmuse/TalkTrace/releases/tag/v0.1.0) 保留不变。
 
 ## 顾问每天怎样使用
 
@@ -117,7 +117,7 @@ TalkTrace 的核心不是固定模板，而是七条工作纪律：
 
 ## 安装
 
-TalkTrace 的版本权威在 GitHub Release；实际导入 Skill 时，推荐使用干净的 TalkTrace 运行目录或由维护者提供的分发 ZIP，而不是把整个开发仓库作为 Skill 运行目录。
+TalkTrace 的源码与版本治理记录以本仓库为准。正式分发版与候选分发包应区分；实际导入 Skill 时，推荐使用干净的 TalkTrace 运行目录或对应版本的分发 ZIP，而不是把整个开发仓库作为 Skill 运行目录。
 
 标准运行目录应为：
 
@@ -138,14 +138,15 @@ TalkTrace/
     └── interview-guide-company-client.md
 ```
 
-v0.1.1 运行目录共11个文件。安装时保留完整目录，不混用不同版本文件；运行包不包含客户原件、评测输出或仓库维护材料。
+运行目录共11个文件。安装时保留完整目录，不混用不同版本文件；运行包不包含客户原件、评测输出或仓库维护文件。
 
-如果使用 ZIP 分发，统一命名为：
+ZIP 分发包按版本命名：
 
-`TalkTrace-v0.1.1-WorkBuddy.zip`（当前正式分发版）。
+- `TalkTrace-v0.1.1-WorkBuddy.zip`：当前正式分发基线；
+- `TalkTrace-v0.2.0-candidate-WorkBuddy.zip`：内部受控试用候选；WorkBuddy S10 目标运行时及真实项目多日效果尚未验证；
+- `TalkTrace-v0.3.0-candidate-WorkBuddy.zip`：CR-05 方法重构候选，已完成候选封装，仅供内部受控试用；WorkBuddy S11 目标运行时及真实项目现场效果尚未验证。
 
-另有 `TalkTrace-v0.2.0-candidate-WorkBuddy.zip`，仅供内部受控试用；WorkBuddy S10 目标运行时及真实项目多日效果尚未验证，不能替代 v0.1.1 正式分发版。
-
+v0.2.0-candidate 与 v0.3.0-candidate 均不替代 v0.1.1 正式分发基线。
 在支持文件夹型 Skill / 自定义 Skill 的宿主环境中导入其中的 `TalkTrace/` 文件夹即可。
 
 GitHub 仓库同时包含测试、CI、分享材料和维护文件，因此**不要把整个仓库目录直接当成 Skill 运行目录**。
@@ -164,7 +165,7 @@ TalkTrace 本身不要求额外第三方 API、账号凭证、数据库或网络
 
 ## 能力边界
 
-TalkTrace 当前正式分发版 v0.1.1 与 v0.2.0 候选版均聚焦调研访谈工作流，不负责：
+TalkTrace 当前正式分发基线 v0.1.1 及 v0.2.0 / v0.3.0 候选版均聚焦调研访谈工作流，不负责：
 
 - 建立持久项目数据库或跨会话长期记忆；
 - RAG / 向量数据库；
@@ -190,6 +191,13 @@ TalkTrace 可以帮助识别问题线索、冲突、候选假设和待验证事�
 See [LICENSE](LICENSE).
 
 
-## 冷启动与方法回归测试（候选版本）
+## 候选版本回归与验证边界
+
+既有 v0.2.0-candidate 的无项目记忆逐日测试包已收录于 [`evals/cold-start-kit/`](evals/cold-start-kit/README.md)。CR-05 新增管理体系现状摸底公开回归 [`evals/as-is-mapping.md`](evals/as-is-mapping.md)，用于检查调查方法适配、主题覆盖和跨日更新。
+
+v0.3.0-candidate 的 Owner 裁决为 **ACCEPT WITH CONDITIONS / OWNER-DIRECTED CLOSE**。工程结构校验与上下文恢复回归通过；独立 Practice Tracing、As-Is-only 负例、WorkBuddy S11 和真实项目现场效果未验证，并按 Owner 决定不再追测。详细证据边界见 [v0.3.0-candidate 候选封装记录](releases/v0.3.0-candidate.md)。
+
+当前正式分发基线仍为 v0.1.1；v0.2.0-candidate 与 v0.3.0-candidate 均保持候选身份。
+
 
 既有 v0.2.0-candidate 的无项目记忆逐日测试包已收录于 [`evals/cold-start-kit/`](evals/cold-start-kit/README.md)。CR-05 新增管理体系现状摸底公开回归 [`evals/as-is-mapping.md`](evals/as-is-mapping.md)，用于检查调查方法适配、主题覆盖和跨日更新。公开回归与独立 held-out 行为验收分开；正式分发仍为 v0.1.1，v0.3.0-candidate 尚未发布。
