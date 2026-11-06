@@ -6,6 +6,8 @@ on:
 
 jobs:
   build-independent-runner:
+    # This legacy runner ZIP is specifically v0.2.0-candidate; do not package v0.3.0 runtime under its old version label.
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
