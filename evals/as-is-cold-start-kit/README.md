@@ -8,7 +8,7 @@
 - Runner 不得读取 `REVIEWER-RUBRIC.md`、`evals/as-is-mapping.md` 或其他阶段输入。
 - 每个输入按指定顺序在同一独立测试会话中执行；跨日批次用例需要保留同一测试会话。
 - 完成后，将每轮完整原始回答、实际读取文件、运行版本、文件 SHA 和任何环境限制交给 Reviewer。
-- Reviewer 在原始回答冻结后才读取评分标准。不得事后润色或重构 Runner 输出。
+- Reviewer 在原始回答冻结后才读取对应 Rubric。As-Is 用 `REVIEWER-RUBRIC.md`；实践穿透回归用 `REVIEWER-PRACTICE-RUBRIC.md`。不得事后润色或重构 Runner 输出。
 
 ## 推荐测试顺序
 
